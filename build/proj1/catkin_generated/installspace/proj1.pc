@@ -1,0 +1,8 @@
+prefix=/home/student/catkin_ws/install
+
+Name: proj1
+Description: Description of proj1
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/student/catkin_ws/install/lib 
+Requires: 
