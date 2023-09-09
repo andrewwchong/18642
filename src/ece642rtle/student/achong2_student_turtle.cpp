@@ -19,7 +19,7 @@ turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 // OK TO MODIFY BELOW THIS LINE
 
 enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
-enum State(STOP,GO);
+enum State{STOP,GO};
 //right 0, Left 1, Forward 2, 3 Backward
 #define TIMEOUT 10    // bigger number slows down simulation so you can see what's happening
 float w, state;
