@@ -18,9 +18,10 @@ turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
 
-enum Direction{RIGHT, LEFT, FORWARD, BACKWARD};
+enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
+enum State(STOP,GO);
 //right 0, Left 1, Forward 2, 3 Backward
-#define TIMEOUT 80    // bigger number slows down simulation so you can see what's happening
+#define TIMEOUT 10    // bigger number slows down simulation so you can see what's happening
 float w, state;
 float fx1, fy1, fx2, fy2;
 float z, aend, mod, bp, q;
@@ -31,54 +32,51 @@ float z, aend, mod, bp, q;
 // and NO other turtle methods or maze methods (no peeking at the maze!)
 bool studentMoveTurtle(QPointF& pos_, int& orientation)
 { 
-	//ROS_INFO("Turtle update Called  w=%f", w);
+	ROS_INFO("Turtle update Called  w=%f", w);
 	mod = true;
   if(w == 0){
 	  fx1 = pos_.x(); fy1 = pos_.y();
     fx2 = pos_.x(); fy2 = pos_.y();
 	  if (orientation < 2){ //Left or right
-			if (orientation == 0){fy2+=1;} //Go up if orientation is left
+			if (orientation == LEFT){fy2+=1;} //Go up if orientation is left
 			else{fx2+=1;} //Go right if orientation Down
 		}
 		else{ //up or down
 			fx2+=1; //Go Up and Right
 			fy2+=1; 
-		  if (orientation == 2){fx1+=1;}  
+		  if (orientation == FORWARD){fx1+=1;}  
 		  else{fy1+=1;} 
 		}
 		//bp checks if the space in front of it is blocked
 		bp = bumped(fx1,fy1,fx2,fy2);
 		//aent checks if space is at the end of maze
 		aend = atend(pos_.x(), pos_.y());
-		ROS_INFO("bp=%f  aend=%f", bp, aend);
-
 		//State 0 means it stays in place, state 1 means it moves
-		if(orientation == 0) //Left
-			if(state == 2)  { orientation = 3;  state = 1; }
-			else if (bp) { orientation = 1;  state = 0; }
+		if(orientation == LEFT) //Left
+			if(state == 2)  { orientation = RIGHT;  state = GO; }
+			else if (bp) { orientation = BACKWARD;  state = STOP; }
 			else state = 2;
-		else if(orientation == 1) //Right
-			if(state == 2)  { orientation = 0;  state = 1; }
-			else if (bp) { orientation = 2;  state = 0; }
+		else if(orientation == RIGHT) //Right
+			if(state == 2)  { orientation = FORWARD;  state = GO; }
+			else if (bp) { orientation = LEFT;  state = STOP; }
 			else state = 2;
-		else if(orientation == 2) //Forward
-			if(state == 2)  { orientation = 1;  state = 1; }
-			else if (bp) { orientation = 3;  state = 0; }
+		else if(orientation == FORWARD) //Forward
+			if(state == 2)  { orientation = BACKWARD;  state = GO; }
+			else if (bp) { orientation = RIGHT;  state = STOP; }
 			else state = 2;
 		else if(orientation == 3) //Backward
-			if(state == 2)  { orientation = 2;  state = 1; }
-			else if (bp) { orientation = 0;  state = 0; }
+			if(state == 2)  { orientation = LEFT;  state = GO; }
+			else if (bp) { orientation = FORWARD;  state = STOP; }
 			else state = 2;
     z = (state == 2);
  	 	ROS_INFO("Orientation=%f  STATE=%f,z:%d", orientation, state,z);
     mod = true;
 	 if(z == true && aend == false) {
 		//Orientation here is always 2 - It only needs to go forward
-		 ROS_INFO("POOP Orientation:%f",orientation);
-     if (orientation == 1) pos_.setY(pos_.y() - 1); 
-     if (orientation == 2) pos_.setX(pos_.x() + 1);
-     if (orientation == 3) pos_.setY(pos_.y() + 1);
-     if (orientation == 0) pos_.setX(pos_.x() - 1);
+     if (orientation == LEFT) pos_.setX(pos_.x() - 1);
+		 if (orientation == RIGHT) pos_.setY(pos_.y() - 1); 
+     if (orientation == FORWARD) pos_.setX(pos_.x() + 1);
+     if (orientation == BACKWARD) pos_.setY(pos_.y() + 1);
 		//x is forwards and backwards
 		//y is left and right 
 		//position is relative to robot heading
