@@ -27,7 +27,6 @@ enum State{STOP,GO,ACT};
 //#define TIMEOUT 10    // bigger number slows down simulation so you can see what's happening
 float moving, state;
 //float status;
-		 
 // this procedure takes the current turtle position and orientation and returns
 // true=submit changes, false=do not submit changes
 // Ground rule -- you are only allowed to call the helper functions "bump(..)" and "atend(..)",
