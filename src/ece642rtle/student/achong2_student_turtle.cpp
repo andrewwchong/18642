@@ -26,6 +26,13 @@ enum State{STOP,GO,ACT};
 //right 0, Left 1, Forward 2, 3 Backward
 //#define TIMEOUT 10    // bigger number slows down simulation so you can see what's happening
 float moving, state;
+
+static const int sizeX = 11;
+static const int sizeY = 11;
+static const int mapSize = 23;
+int16_t map[sizeX][sizeY];
+static int mapX = 11;
+static int mapY = 11;
 //float status;
 // this procedure takes the current turtle position and orientation and returns
 // true=submit changes, false=do not submit changes
@@ -98,15 +105,31 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 	 if(status== true && atEnd == false) {
 		
 		//Orientation here is always 2 - It only needs to go forward
-		if (orientation == LEFT) pos_.setX(pos_.x() - 1);
-		if (orientation == RIGHT) pos_.setY(pos_.y() - 1); 
-		if (orientation == FORWARD) pos_.setX(pos_.x() + 1);
-		if (orientation == BACKWARD) pos_.setY(pos_.y() + 1);
+		if (orientation == LEFT){
+			pos_.setX(pos_.x() - 1);
+			mapX -= 1;
+		} 
+		if (orientation == RIGHT){
+			pos_.setY(pos_.y() - 1); 
+			mapY -= 1;
+		} 
+		if (orientation == FORWARD){
+			 pos_.setX(pos_.x() + 1);
+   			 mapX += 1;
+		}
+		if (orientation == BACKWARD){
+			 pos_.setY(pos_.y() + 1);
+  			 mapY += 1;
+
+		}
+		map[mapX][mapY] += 1
+
 		//x is forwards and backwards
 		//y is left and right 
 		//position is relative to robot heading
      status = false;
      mod = true;
+	 displayVisits(map[mapX][mapY]);
     }
 	}
     if (atEnd){
