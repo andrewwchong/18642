@@ -122,7 +122,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
   			 mapY += 1;
 
 		}
-		map[mapX][mapY] += 1
+		map[mapX][mapY] += 1;
 
 		//x is forwards and backwards
 		//y is left and right 
