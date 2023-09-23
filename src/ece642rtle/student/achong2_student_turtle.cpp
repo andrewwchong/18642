@@ -128,24 +128,6 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 					ROS_ERROR("undefined direction");
 				}
 			}
-			
-			//Orientation here is always 2 - It only needs to go forward
-			// if (orientation == LEFT){
-			// 	pos_.setX(pos_.x() - 1);
-			// 	mapX -= 1;
-			// } 
-			// if (orientation == RIGHT){
-			// 	pos_.setY(pos_.y() - 1); 
-			// 	mapY -= 1;
-			// } 
-			// if (orientation == FORWARD){
-			// 	pos_.setX(pos_.x() + 1);
-			// 	mapX += 1;
-			// }
-			// if (orientation == BACKWARD){
-			// 	pos_.setY(pos_.y() + 1);
-			// 	mapY += 1;
-			// }
 			map[mapX][mapY] += 1;
 
 		//x is forwards and backwards
