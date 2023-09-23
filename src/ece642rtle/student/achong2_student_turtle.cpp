@@ -107,18 +107,22 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 				case LEFT:{
 					pos_.setX(pos_.x() - 1);
 					mapX -= 1;	
+					break;
 				}
 				case RIGHT:{
-				pos_.setY(pos_.y() - 1); 
-				mapY -= 1;
+					pos_.setY(pos_.y() - 1); 
+					mapY -= 1;
+					break;
 				}
 				case FORWARD:{
-				pos_.setX(pos_.x() + 1);
-				mapX += 1;
+					pos_.setX(pos_.x() + 1);
+					mapX += 1;
+					break;
 				}
 				case BACKWARD:{
-				pos_.setY(pos_.y() + 1);
-				mapY += 1;
+					pos_.setY(pos_.y() + 1);
+					mapY += 1;
+					break;
 				}
 				default:{
 					ROS_ERROR("undefined direction");
