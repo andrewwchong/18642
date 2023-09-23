@@ -24,15 +24,14 @@ typedef struct Point{
 enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
 enum State{STOP,GO,ACT};
 //right 0, Left 1, Forward 2, 3 Backward
-//#define TIMEOUT 10    // bigger number slows down simulation so you can see what's happening
 float moving, state;
 
-static const int sizeX = 11;
-static const int sizeY = 11;
-static const int mapSize = 23;
+static const int16_t sizeX = 11;
+static const int16_t sizeY = 11;
+static const int16_t mapSize = 23;
 int16_t map[sizeX][sizeY];
-static int mapX = 11;
-static int mapY = 11;
+static int16_t mapX = 11;
+static int16_t mapY = 11;
 //float status;
 // this procedure takes the current turtle position and orientation and returns
 // true=submit changes, false=do not submit changes
@@ -99,37 +98,58 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			else{
 				state = action;}
 		}
-    status= (state == action);
- 	 	ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
-    mod = true;
-	 if(status== true && atEnd == false) {
-		
-		//Orientation here is always 2 - It only needs to go forward
-		if (orientation == LEFT){
-			pos_.setX(pos_.x() - 1);
-			mapX -= 1;
-		} 
-		if (orientation == RIGHT){
-			pos_.setY(pos_.y() - 1); 
-			mapY -= 1;
-		} 
-		if (orientation == FORWARD){
-			 pos_.setX(pos_.x() + 1);
-   			 mapX += 1;
-		}
-		if (orientation == BACKWARD){
-			 pos_.setY(pos_.y() + 1);
-  			 mapY += 1;
+		status= (state == action);
+			ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
+		mod = true;
+		if(status== true && atEnd == false) {
 
-		}
-		map[mapX][mapY] += 1;
+			switch(orientation){
+				case LEFT:{
+					pos_.setX(pos_.x() - 1);
+					mapX -= 1;	
+				}
+				case RIGHT:{
+				pos_.setY(pos_.y() - 1); 
+				mapY -= 1;
+				}
+				case FORWARD:{
+				pos_.setX(pos_.x() + 1);
+				mapX += 1;
+				}
+				case BACKWARD:{
+				pos_.setY(pos_.y() + 1);
+				mapY += 1;
+				}
+				default:{
+					ROS_ERROR("undefined direction");
+				}
+			}
+			
+			//Orientation here is always 2 - It only needs to go forward
+			// if (orientation == LEFT){
+			// 	pos_.setX(pos_.x() - 1);
+			// 	mapX -= 1;
+			// } 
+			// if (orientation == RIGHT){
+			// 	pos_.setY(pos_.y() - 1); 
+			// 	mapY -= 1;
+			// } 
+			// if (orientation == FORWARD){
+			// 	pos_.setX(pos_.x() + 1);
+			// 	mapX += 1;
+			// }
+			// if (orientation == BACKWARD){
+			// 	pos_.setY(pos_.y() + 1);
+			// 	mapY += 1;
+			// }
+			map[mapX][mapY] += 1;
 
 		//x is forwards and backwards
 		//y is left and right 
 		//position is relative to robot heading
-     status = false;
-     mod = true;
-	 displayVisits(map[mapX][mapY]);
+		status = false;
+		mod = true;
+		displayVisits(map[mapX][mapY]);
     }
 	}
     if (atEnd){
