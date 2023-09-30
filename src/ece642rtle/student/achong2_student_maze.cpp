@@ -71,7 +71,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
     nw_or = translateOrnt(orientation, nextMove,bump);
-    status= (state == action);
+    status= (STATE == action);
     pos_ = translatePos(pos_, nextMove,nw_or,atEnd);
 
     }
@@ -93,7 +93,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
  */
 QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool atEnd) {
 
-  if((state == action) && atEnd == false) {
+  if((STATE == action) && atEnd == false) {
         switch(orientation){
           case LEFT:{
             pos_.setX(pos_.x() - 1);
