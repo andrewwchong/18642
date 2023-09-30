@@ -21,8 +21,7 @@ typedef struct Point{
   int x;
   int y;
 };
-enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
-enum State{STOP,GO,ACT};
+
 //right 0, Left 1, Forward 2, 3 Backward
 float moving, state;
 

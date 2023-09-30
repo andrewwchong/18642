@@ -24,4 +24,11 @@ turtleMove studentTurtleStep(bool bumped);
 // OK to change below this line
 bool studentMoveTurtle(QPointF& pos_, int& nw_or);
 
+enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
+enum State{STOP,GO,ACT};
+static const int8_t action = 2;
 
+typedef struct Point{
+  int x;
+  int y;
+};
