@@ -23,13 +23,13 @@
 
 #include "student.h"
 
-float moving, state;
+float MOVING, STATE;
 
 
 static const int16_t sizeX = 11;
 static const int16_t sizeY = 11;
 static const int16_t mapSize = 23;
-int16_t map[sizeX][sizeY];
+int16_t MAP[sizeX][sizeY];
 static int16_t mapX = 11;
 static int16_t mapY = 11;
 
@@ -45,11 +45,11 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 	static int16_t action = 2;
 	static int16_t TIMEOUT = 40;
 	static bool bump;
-	ROS_INFO("Turtle update Called  moving=%f", moving);
+	ROS_INFO("Turtle update Called  MOVING=%f", MOVING);
 	static bool mod = true;
 	static bool atEnd = false;
 	static bool status;
-  if(moving== 0){
+  if(MOVING== 0){
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
 	  New.x = pos_.x(); New.y = pos_.y();
     int orientation = nw_or;
@@ -78,11 +78,11 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 
     if (atEnd){
         return false;}
-    if (moving==0){ 
-        moving = TIMEOUT;} 
+    if (MOVING==0){ 
+        MOVING = TIMEOUT;} 
     else{ 
-        moving-= 1;}
-    if (moving==TIMEOUT){
+        MOVING-= 1;}
+    if (MOVING==TIMEOUT){
         return true;}
     return false;
 }
@@ -119,7 +119,7 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool at
             ROS_ERROR("undefined direction");
           }
         }
-		  displayVisits(map[mapX][mapY]);
+		  displayVisits(MAP[mapX][mapY]);
       }
   return pos_;
 }
@@ -132,36 +132,36 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool at
  //bump = bumped
 int translateOrnt(int orientation, turtleMove nextMove,int bump) {
  if(orientation == LEFT){ //Left
-			if(state == action){
-				orientation = RIGHT;  state = GO; }
+			if(STATE == action){
+				orientation = RIGHT;  STATE = GO; }
 			else if (bump){
-				orientation = BACKWARD;  state = STOP; }
+				orientation = BACKWARD;  STATE = STOP; }
 			else{
-				state = action;}
+				STATE = action;}
 		}
 		else if(orientation == RIGHT){ //Right
-			if(state == action){
-				orientation = FORWARD;  state = GO; }
+			if(STATE == action){
+				orientation = FORWARD;  STATE = GO; }
 			else if (bump){
-				orientation = LEFT;  state = STOP; }
+				orientation = LEFT;  STATE = STOP; }
 			else{
-				state = action;}
+				STATE = action;}
 		}
 		else if(orientation == FORWARD){ //Forward
-			if(state == action){
-				orientation = BACKWARD;  state = GO; }
+			if(STATE == action){
+				orientation = BACKWARD;  STATE = GO; }
 			else if (bump){
-				orientation = RIGHT;  state = STOP; }
+				orientation = RIGHT;  STATE = STOP; }
 			else{
-				state = action;}
+				STATE = action;}
   		}
   		else if(orientation == BACKWARD){ //Backward
-			if(state == action){
-				orientation = LEFT;  state = GO; }
+			if(STATE == action){
+				orientation = LEFT;  STATE = GO; }
 			else if (bump){
-				orientation = FORWARD;  state = STOP; }
+				orientation = FORWARD;  STATE = STOP; }
 			else{
-				state = action;}
+				STATE = action;}
 		}
   return orientation;
 }
