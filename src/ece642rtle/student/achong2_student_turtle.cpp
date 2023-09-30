@@ -17,10 +17,10 @@
 turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
-typedef struct Point{
-  int x;
-  int y;
-};
+// typedef struct Point{
+//   int x;
+//   int y;
+// };
 
 //right 0, Left 1, Forward 2, 3 Backward
 float moving, state;
