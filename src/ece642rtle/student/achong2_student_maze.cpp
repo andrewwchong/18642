@@ -176,37 +176,5 @@ int translateOrnt(int orientation, turtleMove nextMove,int bump) {
 		}
   }
 
-//  if(orientation == LEFT){ //Left
-// 			if(STATE == action){ //Turn right if action is taken
-// 				orientation = RIGHT;  STATE = GO; }
-// 			else if (bump){ //Move backwards if bumped
-// 				orientation = BACKWARD;  STATE = STOP; }
-// 			else{
-// 				STATE = action;}
-// 		}
-// 		else if(orientation == RIGHT){ //Right
-// 			if(STATE == action){//Turn Forward if action is taken
-// 				orientation = FORWARD;  STATE = GO; }
-// 			else if (bump){
-// 				orientation = LEFT;  STATE = STOP; }
-// 			else{
-// 				STATE = action;}
-// 		}
-// 		else if(orientation == FORWARD){ //Forward
-// 			if(STATE == action){//Turn backward if action is taken
-// 				orientation = BACKWARD;  STATE = GO; }
-// 			else if (bump){
-// 				orientation = RIGHT;  STATE = STOP; }
-// 			else{
-// 				STATE = action;}
-//   		}
-//   		else if(orientation == BACKWARD){ //Backward
-// 			if(STATE == action){//Turn Left if action is taken
-// 				orientation = LEFT;  STATE = GO; }
-// 			else if (bump){
-// 				orientation = FORWARD;  STATE = STOP; }
-// 			else{
-// 				STATE = action;}
-// 		}
   return orientation;
 }
