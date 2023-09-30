@@ -40,13 +40,10 @@ static int16_t mapY = 11;
  */
 bool moveTurtle(QPointF& pos_, int& nw_or)
 {
-  static const uint8_t TIMEOUT = 40;
-  static uint8_t TIME = 0;
-
   Point Prev{};
 	Point New{};
 	static int16_t action = 2;
-	static int16_t TIMEOUT = 10;
+	static int16_t TIMEOUT = 40;
 	static bool bump;
 	ROS_INFO("Turtle update Called  moving=%f", moving);
 	static bool mod = true;
@@ -55,6 +52,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
   if(moving== 0){
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
 	  New.x = pos_.x(); New.y = pos_.y();
+    int orientation = nw_or;
 	  if (orientation < FORWARD){ //Left or right
 			if (orientation == LEFT){New.y+=1;} //Go up if orientation is left
 			else{New.x+=1;} //Go right if orientation Down
@@ -72,9 +70,9 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 		//State 0 means it stays in place, state 1 means it moves
 
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
-    nw_or = translateOrnt(nw_or, nextMove,bump,);
+    nw_or = translateOrnt(orientation, nextMove,bump);
     status= (state == action);
-    pos_ = translatePos(pos_, nextMove,orientation,atEnd);
+    pos_ = translatePos(pos_, nextMove,nw_or,atEnd);
 
     }
 
@@ -121,7 +119,7 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, Direction  orientation,b
             ROS_ERROR("undefined direction");
           }
         }
-      displayMap(mapX,mapY);
+		  displayVisits(map[mapX][mapY]);
       }
   return pos_;
 }
