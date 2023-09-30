@@ -49,7 +49,9 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 	static bool mod = true;
 	static bool atEnd = false;
 	static bool status;
+  //Only take action if status is moving
   if(MOVING== 0){
+    //Update positions
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
 	  New.x = pos_.x(); New.y = pos_.y();
     int orientation = nw_or;
@@ -70,12 +72,13 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 		//State 0 means it stays in place, state 1 means it moves
 
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
-    nw_or = translateOrnt(orientation, nextMove,bump);
+    nw_or = translateOrnt(orientation, nextMove,bump); //Find orientation of turtle
     status= (STATE == action);
-    pos_ = translatePos(pos_, nextMove,nw_or,atEnd);
+    pos_ = translatePos(pos_, nextMove,nw_or,atEnd); //Find translation position of turtle
 
     }
 
+    //Check for timeout sequence
     if (atEnd){
         return false;}
     if (MOVING==0){ 
@@ -92,26 +95,26 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
  * based on the move
  */
 QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool atEnd) {
-
+  //Take a decision if the turtle is taking an action and is not at the end
   if((STATE == action) && atEnd == false) {
         switch(orientation){
           case LEFT:{
-            pos_.setX(pos_.x() - 1);
+            pos_.setX(pos_.x() - 1); //Decrement x position by 1
             mapX -= 1;	
             break;
           }
           case RIGHT:{
-            pos_.setY(pos_.y() - 1); 
+            pos_.setY(pos_.y() - 1); //Decrement y position by 1
             mapY -= 1;
             break;
           }
           case FORWARD:{
-            pos_.setX(pos_.x() + 1);
+            pos_.setX(pos_.x() + 1); //Increment x position by 1
             mapX += 1;
             break;
           }
           case BACKWARD:{
-            pos_.setY(pos_.y() + 1);
+            pos_.setY(pos_.y() + 1);//Increment y position by 1
             mapY += 1;
             break;
           }
@@ -119,6 +122,7 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool at
             ROS_ERROR("undefined direction");
           }
         }
+      //Update Map
  			MAP[mapX][mapY] += 1;
 		  displayVisits(MAP[mapX][mapY]);
       }
@@ -132,37 +136,77 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool at
  //stateFlag = state==orientation
  //bump = bumped
 int translateOrnt(int orientation, turtleMove nextMove,int bump) {
- if(orientation == LEFT){ //Left
-			if(STATE == action){
+ //Case on orientation
+  switch(orientation){
+    case LEFT:{ //Left
+			if(STATE == action){ //Turn right if action is taken
 				orientation = RIGHT;  STATE = GO; }
-			else if (bump){
+			else if (bump){ //Move backwards if bumped
 				orientation = BACKWARD;  STATE = STOP; }
 			else{
 				STATE = action;}
+      break;
 		}
-		else if(orientation == RIGHT){ //Right
-			if(STATE == action){
+		case RIGHT:{//Right
+			if(STATE == action){//Turn Forward if action is taken
 				orientation = FORWARD;  STATE = GO; }
 			else if (bump){
 				orientation = LEFT;  STATE = STOP; }
 			else{
 				STATE = action;}
+      break;
 		}
-		else if(orientation == FORWARD){ //Forward
-			if(STATE == action){
+		case FORWARD:{ //Forward
+			if(STATE == action){//Turn backward if action is taken
 				orientation = BACKWARD;  STATE = GO; }
 			else if (bump){
 				orientation = RIGHT;  STATE = STOP; }
 			else{
 				STATE = action;}
+      break;
   		}
-  		else if(orientation == BACKWARD){ //Backward
-			if(STATE == action){
+  	 case BACKWARD:{ //Backward
+			if(STATE == action){//Turn Left if action is taken
 				orientation = LEFT;  STATE = GO; }
 			else if (bump){
 				orientation = FORWARD;  STATE = STOP; }
 			else{
 				STATE = action;}
+      break;
 		}
+  }
+
+//  if(orientation == LEFT){ //Left
+// 			if(STATE == action){ //Turn right if action is taken
+// 				orientation = RIGHT;  STATE = GO; }
+// 			else if (bump){ //Move backwards if bumped
+// 				orientation = BACKWARD;  STATE = STOP; }
+// 			else{
+// 				STATE = action;}
+// 		}
+// 		else if(orientation == RIGHT){ //Right
+// 			if(STATE == action){//Turn Forward if action is taken
+// 				orientation = FORWARD;  STATE = GO; }
+// 			else if (bump){
+// 				orientation = LEFT;  STATE = STOP; }
+// 			else{
+// 				STATE = action;}
+// 		}
+// 		else if(orientation == FORWARD){ //Forward
+// 			if(STATE == action){//Turn backward if action is taken
+// 				orientation = BACKWARD;  STATE = GO; }
+// 			else if (bump){
+// 				orientation = RIGHT;  STATE = STOP; }
+// 			else{
+// 				STATE = action;}
+//   		}
+//   		else if(orientation == BACKWARD){ //Backward
+// 			if(STATE == action){//Turn Left if action is taken
+// 				orientation = LEFT;  STATE = GO; }
+// 			else if (bump){
+// 				orientation = FORWARD;  STATE = STOP; }
+// 			else{
+// 				STATE = action;}
+// 		}
   return orientation;
 }
