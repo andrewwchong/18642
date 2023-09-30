@@ -119,7 +119,7 @@ QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool at
             ROS_ERROR("undefined direction");
           }
         }
- 			map[mapX][mapY] += 1;
+ 			MAP[mapX][mapY] += 1;
 		  displayVisits(MAP[mapX][mapY]);
       }
   return pos_;
