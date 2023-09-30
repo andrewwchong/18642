@@ -91,7 +91,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
  * Takes a position and a turtleMove and returns a new position
  * based on the move
  */
-QPointF translatePos(QPointF pos_, turtleMove nextMove, Direction  orientation,bool atEnd) {
+QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool atEnd) {
 
   if((state == action) && atEnd == false) {
         switch(orientation){
