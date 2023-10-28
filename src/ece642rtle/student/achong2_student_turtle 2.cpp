@@ -11,20 +11,17 @@
  *
  */
 
-
-//Run:
-// catkin_make in catkin_ws
-// T1: roscore
-// T2: source devel/setup.bash && rosrun ece642rtle ece642rtle_node
-// T3: source devel/setup.bash && rosrun ece642rtle ece642rtle_student
-
-
 #include "student.h"
 
 // Ignore this line until project 5
 turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
+// typedef struct Point{
+//   int x;
+//   int y;
+// };
+
 //right 0, Left 1, Forward 2, 3 Backward
 float moving, state;
 
@@ -47,6 +44,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 	static int16_t TIMEOUT = 10;
 	static bool bump;
 	ROS_INFO("Turtle update Called  moving=%f", moving);
+	static bool mod = true;
 	static bool atEnd = false;
 	static bool status;
   	if(moving== 0){
@@ -62,61 +60,48 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		  if (orientation == FORWARD){Prev.x+=1;}  
 		  else{Prev.y+=1;} 
 		}
-		
+		//bump checks if the space in front of it is blocked
+		bump = bumped(Prev.x,Prev.y,New.x,New.y);
 		//aent checks if space is at the end of maze
 		atEnd = atend(pos_.x(), pos_.y());
-
-		//End Conditions
-		if (atEnd){
-			return false;}
-		if (moving==0){ 
-			moving = TIMEOUT;} 
-		else{ 
-			moving-= 1;}
-		if (moving==TIMEOUT){
-			return true;}
-
-		//bump checks if the space in front of it is blocked
-
 		//State 0 means it stays in place, state 1 means it moves
-		// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
-		minDirection = -1;
-		min = 1000;
-		Point tempCoord{};		
-		for(int i = 0; i < 4; i++){
-			switch(i){
-				//TODO:need to change these
-				case 0:{
-					tempCoord.x = Prev.x-1;
-					tempCoord.y = Prev.y;
-
-				}
-				case 1:{
-					tempCoord.x = Prev.x;
-					tempCoord.y = Prev.y-1;
-				}
-				case 2:{
-					tempCoord.x = Prev.x+1;
-					tempCoord.y = Prev.y;
-				}
-				case 3:{
-					tempCoord.x = Prev.x;
-					tempCoord.y = Prev.y+1;
-				}
-			}
-			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
-			if(map[mapX][mapY] < min){
-				min = map[mapX][mapY];
-				minDirection = i; //This represents a direction in the enum
-			} 
+		if(orientation == LEFT){ //Left
+			if(state == action){
+				orientation = RIGHT;  state = GO; }
+			else if (bump){
+				orientation = BACKWARD;  state = STOP; }
+			else{
+				state = action;}
 		}
-		state = action;
+		else if(orientation == RIGHT){ //Right
+			if(state == action){
+				orientation = FORWARD;  state = GO; }
+			else if (bump){
+				orientation = LEFT;  state = STOP; }
+			else{
+				state = action;}
+		}
+		else if(orientation == FORWARD){ //Forward
+			if(state == action){
+				orientation = BACKWARD;  state = GO; }
+			else if (bump){
+				orientation = RIGHT;  state = STOP; }
+			else{
+				state = action;}
+  		}
+  		else if(orientation == BACKWARD){ //Backward
+			if(state == action){
+				orientation = LEFT;  state = GO; }
+			else if (bump){
+				orientation = FORWARD;  state = STOP; }
+			else{
+				state = action;}
+		}
 		status= (state == action);
-		orientation = minDirection;
-
-		ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
-
+			ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
+		mod = true;
 		if(status== true && atEnd == false) {
+
 			switch(orientation){
 				case LEFT:{
 					pos_.setX(pos_.x() - 1);
@@ -148,9 +133,17 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		//y is left and right 
 		//position is relative to robot heading
 		status = false;
+		mod = true;
 		displayVisits(map[mapX][mapY]);
     }
 	}
-
+    if (atEnd){
+        return false;}
+    if (moving==0){ 
+        moving = TIMEOUT;} 
+    else{ 
+        moving-= 1;}
+    if (moving==TIMEOUT){
+        return true;}
  return false;
 }
