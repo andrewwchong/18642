@@ -71,25 +71,25 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		int minDirection = -1;
 		int min = 1000;
 		Point tempCoord{};		
+		Point minCoord{};
 		for(int i = 0; i < 4; i++){
 			switch(i){
 				//TODO:need to change these
 				case 0:{
 					tempCoord.x = Prev.x-1;
 					tempCoord.y = Prev.y;
-
 				}
 				case 1:{
-					tempCoord.x = Prev.x;
-					tempCoord.y = Prev.y-1;
-				}
-				case 2:{
 					tempCoord.x = Prev.x+1;
 					tempCoord.y = Prev.y;
 				}
-				case 3:{
+				case 2:{
 					tempCoord.x = Prev.x;
 					tempCoord.y = Prev.y+1;
+				}
+				case 3:{
+					tempCoord.x = Prev.x;
+					tempCoord.y = Prev.y-1;
 				}
 			}
 			//bump checks if the space in front of it is blocked
@@ -97,9 +97,10 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			if(map[mapX][mapY] < min){
 				min = map[mapX][mapY];
 				minDirection = i; //This represents a direction in the enum
+				minCoord.x = tempCoord.x;
+				minCoord.y = tempCoord.y;		
 			} 
 		}
-		pos_.setX(pos_.x() - 1);
 		state = action;
 		status= (state == action);
 		orientation = minDirection;
@@ -107,31 +108,37 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
 
 		if(status== true && atEnd == false) {
-			switch(orientation){
-				case LEFT:{
-					pos_.setX(pos_.x() - 1);
-					mapX -= 1;	
-					break;
-				}
-				case RIGHT:{
-					pos_.setY(pos_.y() - 1); 
-					mapY -= 1;
-					break;
-				}
-				case FORWARD:{
-					pos_.setX(pos_.x() + 1);
-					mapX += 1;
-					break;
-				}
-				case BACKWARD:{
-					pos_.setY(pos_.y() + 1);
-					mapY += 1;
-					break;
-				}
-				default:{
-					ROS_ERROR("undefined direction");
-				}
-			}
+			pos_.setX(minCoord.x);
+			pos_.setY(minCoord.y);
+
+			mapX = minCoord.x;
+			mapY = minCoord.y;
+
+			// switch(orientation){
+			// 	case LEFT:{
+			// 		pos_.setX(pos_.x() - 1);
+			// 		mapX -= 1;	
+			// 		break;
+			// 	}
+			// 	case RIGHT:{
+			// 		pos_.setY(pos_.y() - 1); 
+			// 		mapY -= 1;
+			// 		break;
+			// 	}
+			// 	case FORWARD:{
+			// 		pos_.setX(pos_.x() + 1);
+			// 		mapX += 1;
+			// 		break;
+			// 	}
+			// 	case BACKWARD:{
+			// 		pos_.setY(pos_.y() + 1);
+			// 		mapY += 1;
+			// 		break;
+			// 	}
+			// 	default:{
+			// 		ROS_ERROR("undefined direction");
+			// 	}
+			// }
 			map[mapX][mapY] += 1;
 
 		//x is forwards and backwards
