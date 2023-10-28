@@ -80,8 +80,8 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 
 		//State 0 means it stays in place, state 1 means it moves
 		// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
-		minDirection = -1;
-		min = 1000;
+		int minDirection = -1;
+		int min = 1000;
 		Point tempCoord{};		
 		for(int i = 0; i < 4; i++){
 			switch(i){
