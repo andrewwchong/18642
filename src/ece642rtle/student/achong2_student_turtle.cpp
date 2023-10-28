@@ -60,6 +60,19 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 	static bool status;
   	if(moving == 0){
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
+
+	  New.x = pos_.x(); New.y = pos_.y();
+	  if (orientation < FORWARD){ //Left or right
+			if (orientation == LEFT){New.y+=1;} //Go up if orientation is left
+			else{New.x+=1;} //Go right if orientation Down
+		}
+		else{ //up or down
+			New.x+=1; //Go Up and Right
+			New.y+=1; 
+		  if (orientation == FORWARD){Prev.x+=1;}  
+		  else{Prev.y+=1;} 
+		}
+
 		//atend checks if space is at the end of maze
 		atEnd = atend(pos_.x(), pos_.y());
 
@@ -68,11 +81,11 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		int minDirection = -1;
 		int min = 1000;
 		Point tempCoord{};	
-		tempCoord.x = Prev.x;
-		tempCoord.y = Prev.y;	
+		tempCoord.x = New.x;
+		tempCoord.y = New.y;	
 		Point minCoord{};
-		minCoord.x = Prev.x;
-		minCoord.y = Prev.y;
+		minCoord.x = New.x;
+		minCoord.y = New.y;
 		int tempX = mapX;
 		int tempY = mapY;
 		int minX = mapX;
@@ -81,29 +94,29 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			switch(i){
 				//TODO:need to change these
 				case 0:{
-					tempCoord.x = Prev.x-1;
-					tempCoord.y = Prev.y;
+					tempCoord.x = New.x-1;
+					tempCoord.y = New.y;
 					tempX = mapX-1;
 					tempY = mapY;
 					break;
 				}
 				case 1:{
-					tempCoord.x = Prev.x+1;
-					tempCoord.y = Prev.y;
+					tempCoord.x = New.x+1;
+					tempCoord.y = New.y;
 					tempX = mapX+1;
 					tempY = mapY;
 					break;
 				}
 				case 2:{
-					tempCoord.x = Prev.x;
-					tempCoord.y = Prev.y+1;
+					tempCoord.x = New.x;
+					tempCoord.y = New.y+1;
 					tempX = mapX;
 					tempY = mapY+1;
 					break;
 				}
 				case 3:{
-					tempCoord.x = Prev.x;
-					tempCoord.y = Prev.y-1;
+					tempCoord.x = New.x;
+					tempCoord.y = New.y-1;
 					tempX = mapX;
 					tempY = mapY-1;
 					break;
