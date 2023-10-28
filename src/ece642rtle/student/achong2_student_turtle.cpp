@@ -24,6 +24,10 @@
 // Ignore this line until project 5
 turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
+
+
+
+
 // OK TO MODIFY BELOW THIS LINE
 //right 0, Left 1, Forward 2, 3 Backward
 float moving, state;
@@ -34,6 +38,11 @@ static const int16_t mapSize = 23;
 int16_t map[sizeX][sizeY];
 static int16_t mapX = 11;
 static int16_t mapY = 11;
+
+bool inBounds(Point coord){
+	return coord.c < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY; 
+}
+
 //float status;
 // this procedure takes the current turtle position and orientation and returns
 // true=submit changes, false=do not submit changes
@@ -82,7 +91,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			}
 			//bump checks if the space in front of it is blocked
 			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
-			if(map[mapX][mapY] < min && !bump){
+			if(map[mapX][mapY] < min && !bump && inBounds(tempCoord)){
 				min = map[mapX][mapY];
 				minDirection = i; //This represents a direction in the enum
 				minCoord.x = tempCoord.x;
