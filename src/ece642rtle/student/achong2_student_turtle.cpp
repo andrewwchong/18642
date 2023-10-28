@@ -66,15 +66,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		//aent checks if space is at the end of maze
 		atEnd = atend(pos_.x(), pos_.y());
 
-		//End Conditions
-		if (atEnd){
-			return false;}
-		if (moving==0){ 
-			moving = TIMEOUT;} 
-		else{ 
-			moving-= 1;}
-		if (moving==TIMEOUT){
-			return true;}
+		
 
 		//bump checks if the space in front of it is blocked
 
@@ -151,6 +143,14 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		displayVisits(map[mapX][mapY]);
     }
 	}
-
+	//End Conditions
+	if (atEnd){
+		return false;}
+	if (moving==0){ 
+		moving = TIMEOUT;} 
+	else{ 
+		moving-= 1;}
+	if (moving==TIMEOUT){
+		return true;}
  return false;
 }
