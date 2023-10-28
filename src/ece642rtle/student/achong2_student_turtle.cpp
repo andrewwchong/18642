@@ -79,18 +79,25 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 				case 0:{
 					tempCoord.x = Prev.x-1;
 					tempCoord.y = Prev.y;
+					break;
 				}
 				case 1:{
 					tempCoord.x = Prev.x+1;
 					tempCoord.y = Prev.y;
+					break;
 				}
 				case 2:{
 					tempCoord.x = Prev.x;
 					tempCoord.y = Prev.y+1;
+					break;
 				}
 				case 3:{
 					tempCoord.x = Prev.x;
 					tempCoord.y = Prev.y-1;
+					break;
+				}
+				default:{
+					break
 				}
 			}
 			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
