@@ -40,7 +40,7 @@ static int16_t mapX = 11;
 static int16_t mapY = 11;
 
 bool inBounds(Point coord){
-	return coord.x < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY; 
+	return !(coord.x < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY); 
 }
 
 //float status;
@@ -97,7 +97,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 					break;
 				}
 				default:{
-					break
+					break;
 				}
 			}
 			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
