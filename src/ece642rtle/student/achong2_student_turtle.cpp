@@ -49,7 +49,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 	ROS_INFO("Turtle update Called  moving=%f", moving);
 	static bool atEnd = false;
 	static bool status;
-  	if(moving== 0){
+  	if(moving == 0){
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
 	  New.x = pos_.x(); New.y = pos_.y();
 	  if (orientation < FORWARD){ //Left or right
@@ -65,10 +65,6 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		
 		//aent checks if space is at the end of maze
 		atEnd = atend(pos_.x(), pos_.y());
-
-		
-
-		//bump checks if the space in front of it is blocked
 
 		//State 0 means it stays in place, state 1 means it moves
 		// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
@@ -96,12 +92,14 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 					tempCoord.y = Prev.y+1;
 				}
 			}
+			//bump checks if the space in front of it is blocked
 			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
 			if(map[mapX][mapY] < min){
 				min = map[mapX][mapY];
 				minDirection = i; //This represents a direction in the enum
 			} 
 		}
+		pos_.setX(pos_.x() - 1);
 		state = action;
 		status= (state == action);
 		orientation = minDirection;
