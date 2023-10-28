@@ -40,7 +40,7 @@ static int16_t mapX = 11;
 static int16_t mapY = 11;
 
 bool inBounds(Point coord){
-	return !(coord.x < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY); 
+	return !(coord.x < 0 || coord.y < 0 || coord.x >= sizeX || coord.y >= sizeY); 
 }
 
 //float status;
@@ -127,7 +127,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			}
 			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
 			//bump checks if the space in front of it is blocked
-			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
+			bump = bumped(New.x,New.y,tempCoord.x,tempCoord.y);
 			if(map[tempX][tempY] <= min && !bump && inBounds(tempCoord)){
 				min = map[tempX][tempY];
 				minDirection = i; //This represents a direction in the enum
