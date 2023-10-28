@@ -11,17 +11,20 @@
  *
  */
 
+
+//Run:
+// catkin_make in catkin_ws
+// T1: roscore
+// T2: source devel/setup.bash && rosrun ece642rtle ece642rtle_node
+// T3: source devel/setup.bash && rosrun ece642rtle ece642rtle_student
+
+
 #include "student.h"
 
 // Ignore this line until project 5
 turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
-// typedef struct Point{
-//   int x;
-//   int y;
-// };
-
 //right 0, Left 1, Forward 2, 3 Backward
 float moving, state;
 
