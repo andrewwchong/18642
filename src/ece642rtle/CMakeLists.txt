@@ -42,7 +42,7 @@ set(ece642rtle_node_HDRS
 set(ece642rtle_student_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/student/ros_turtle_interface.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/student/achong2_student_maze.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/student/achong2_student_turtle2.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/student/achong2_student_turtle_2.cpp
   )
 
 # Build the monitors: each target must be in quotes.
