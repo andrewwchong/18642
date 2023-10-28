@@ -55,7 +55,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 	static int16_t action = 2;
 	static int16_t TIMEOUT = 10;
 	static bool bump;
-	ROS_INFO("Turtle update Called  moving=%f", moving);
+	// ROS_INFO("Turtle update Called  moving=%f", moving);
 	static bool atEnd = false;
 	static bool status;
   	if(moving == 0){
@@ -73,27 +73,39 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		Point minCoord{};
 		minCoord.x = Prev.x;
 		minCoord.y = Prev.y;
+		int tempX = mapX;
+		int tempY = mapY;
+		int minX = mapX;
+		int minY = mapY;
 		for(int i = 0; i < 4; i++){
 			switch(i){
 				//TODO:need to change these
 				case 0:{
 					tempCoord.x = Prev.x-1;
 					tempCoord.y = Prev.y;
+					tempX = mapX-1;
+					tempY = mapY;
 					break;
 				}
 				case 1:{
 					tempCoord.x = Prev.x+1;
 					tempCoord.y = Prev.y;
+					tempX = mapX+1;
+					tempY = mapY;
 					break;
 				}
 				case 2:{
 					tempCoord.x = Prev.x;
 					tempCoord.y = Prev.y+1;
+					tempX = mapX;
+					tempY = mapY+1;
 					break;
 				}
 				case 3:{
 					tempCoord.x = Prev.x;
 					tempCoord.y = Prev.y-1;
+					tempX = mapX;
+					tempY = mapY-1;
 					break;
 				}
 				default:{
@@ -103,11 +115,13 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
 			//bump checks if the space in front of it is blocked
 			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
-			if(map[tempCoord.x][tempCoord.y] <= min && !bump && inBounds(tempCoord)){
-				min = map[tempCoord.x][tempCoord.y];
+			if(map[tempX][tempY] <= min && !bump && inBounds(tempCoord)){
+				min = map[tempX][tempY];
 				minDirection = i; //This represents a direction in the enum
 				minCoord.x = tempCoord.x;
 				minCoord.y = tempCoord.y;	
+				minX = tempX;
+				minY = tempY;
 				ROS_INFO("New coord (%d,%d) with val %d", minCoord.x, minCoord.y,min);
 			} 
 		}
@@ -115,16 +129,15 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		status= true;
 		orientation = minDirection;
 
-		ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
-		ROS_INFO("Min coord (%d,%d) with val %d", minCoord.x, minCoord.y,min);
+		// ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
 
 		if(status== true && atEnd == false) {
 			ROS_INFO("Go to (%d,%d)", minCoord.x, minCoord.y);
 			pos_.setX(minCoord.x);
 			pos_.setY(minCoord.y);
 
-			mapX = minCoord.x;
-			mapY = minCoord.y;
+			mapX = minX;
+			mapY = minY;
 
 			// switch(orientation){
 			// 	case LEFT:{
