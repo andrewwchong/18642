@@ -40,7 +40,7 @@ static int16_t mapX = 11;
 static int16_t mapY = 11;
 
 bool inBounds(Point coord){
-	return coord.c < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY; 
+	return coord.x < 0 || coord.y < 0 || coord.x > sizeX || coord.y > sizeY; 
 }
 
 //float status;
@@ -67,8 +67,12 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
 		int minDirection = -1;
 		int min = 1000;
-		Point tempCoord{};		
+		Point tempCoord{};	
+		tempCoord.x = Prev.x;
+		tempCoord.y = Prev.y;	
 		Point minCoord{};
+		minCoord.x = Prev.x;
+		minCoord.y = Prev.y;
 		for(int i = 0; i < 4; i++){
 			switch(i){
 				//TODO:need to change these
@@ -91,8 +95,8 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 			}
 			//bump checks if the space in front of it is blocked
 			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
-			if(map[mapX][mapY] < min && !bump && inBounds(tempCoord)){
-				min = map[mapX][mapY];
+			if(map[tempCoord.x][tempCoord.y] < min && !bump && inBounds(tempCoord)){
+				min = map[tempCoord.x][tempCoord.y];
 				minDirection = i; //This represents a direction in the enum
 				minCoord.x = tempCoord.x;
 				minCoord.y = tempCoord.y;		
