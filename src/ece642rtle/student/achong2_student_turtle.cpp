@@ -94,8 +94,10 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 		orientation = minDirection;
 
 		ROS_INFO("Orientation=%f  STATE=%f", orientation, state);
+		ROS_INFO("Min coord (%d,%d) with val %d", minCoord.x, minCoord.y,min);
 
 		if(status== true && atEnd == false) {
+			ROS_INFO("Go to (%d,%d)", minCoord.x, minCoord.y);
 			pos_.setX(minCoord.x);
 			pos_.setY(minCoord.y);
 
