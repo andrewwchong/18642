@@ -93,13 +93,15 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 					tempCoord.y = Prev.y-1;
 				}
 			}
+			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
 			//bump checks if the space in front of it is blocked
 			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
-			if(map[tempCoord.x][tempCoord.y] < min && !bump && inBounds(tempCoord)){
+			if(map[tempCoord.x][tempCoord.y] <= min && !bump && inBounds(tempCoord)){
 				min = map[tempCoord.x][tempCoord.y];
 				minDirection = i; //This represents a direction in the enum
 				minCoord.x = tempCoord.x;
-				minCoord.y = tempCoord.y;		
+				minCoord.y = tempCoord.y;	
+				ROS_INFO("New coord (%d,%d) with val %d", minCoord.x, minCoord.y,min);
 			} 
 		}
 		state = action;
