@@ -1,8 +1,0 @@
-prefix=/home/student/catkin_ws/install
-
-Name: ece642rtle
-Description: Description of ece642rtle
-Version: 0.8.1
-Cflags: -I/home/student/catkin_ws/install/include
-Libs: -L/home/student/catkin_ws/install/lib 
-Requires: geometry_msgs message_runtime std_msgs std_srvs

@@ -1,2 +1,0 @@
-set(ece642rtle_MESSAGE_FILES "/home/student/catkin_ws/src/ece642rtle/msg/PoseOrntBundle.msg;/home/student/catkin_ws/src/ece642rtle/msg/timeInt8.msg;/home/student/catkin_ws/src/ece642rtle/msg/bumpEcho.msg;/home/student/catkin_ws/src/ece642rtle/msg/aendEcho.msg")
-set(ece642rtle_SERVICE_FILES "/home/student/catkin_ws/src/ece642rtle/srv/Kill.srv;/home/student/catkin_ws/src/ece642rtle/srv/Spawn.srv;/home/student/catkin_ws/src/ece642rtle/srv/RTIbump.srv;/home/student/catkin_ws/src/ece642rtle/srv/RTIatend.srv")
