@@ -42,7 +42,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 {
   Point Prev{};
 	Point New{};
-	static int32_t action = 2;
+	// static int32_t action = 2;
 	static int32_t TIMEOUT = 40;
 	static bool bump;
 	ROS_INFO("Turtle update Called  MOVING=%f", MOVING);
@@ -51,7 +51,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
   //Only take action if status is moving
   if(MOVING== 0){
     //Update positions
-	  Prev.x = pos_.x(); Prev.y = pos_.y();
+	  Prev.x = float(pos_.x()); Prev.y = float(pos_.y());
 	  New.x = pos_.x(); New.y = pos_.y();
     int orientation = nw_or;
 	  if (orientation < FORWARD){ //Left or right
@@ -73,7 +73,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
     nw_or = translateOrnt(orientation, nextMove,bump); //Find orientation of turtle
     // status = (STATE == action);
-    pos_ = translatePos(pos_, nextMove,nw_or,atEnd); //Find translation position of turtle
+    pos_ = translatePos(pos_,nw_or,atEnd); //Find translation position of turtle
 
     }
 
@@ -93,9 +93,8 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
  * Takes a position and a turtleMove and returns a new position
  * based on the move
  */
-QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool atEnd) {
+QPointF translatePos(QPointF pos_ , int  orientation,bool atEnd) {
   //Take a decision if the turtle is taking an action and is not at the end
-  nextMove += 1;
   if((STATE == action) && atEnd == false) {
         switch(orientation){
           case LEFT:{
@@ -174,6 +173,9 @@ int translateOrnt(int orientation, turtleMove nextMove,int bump) {
 				STATE = action;}
       break;
 		}
+    case default:{
+      break;
+    }
   }
 
   return orientation;
