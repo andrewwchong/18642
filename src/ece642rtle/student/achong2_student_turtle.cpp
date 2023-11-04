@@ -30,14 +30,14 @@ turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
 //right 0, Left 1, Forward 2, 3 Backward
-int16_t moving, state;
+int32_t moving, state;
 
-static const int16_t sizeX = 11;
-static const int16_t sizeY = 11;
-static const int16_t mapSize = 23;
-int16_t map[sizeX][sizeY];
-static int16_t mapX = 11;
-static int16_t mapY = 11;
+static const int32_t sizeX = 11;
+static const int32_t sizeY = 11;
+static const int32_t mapSize = 23;
+int32_t map[sizeX][sizeY];
+static int32_t mapX = 11;
+static int32_t mapY = 11;
 
 bool inBounds(Point coord){
 	return !(coord.x < 0 || coord.y < 0 || coord.x >= sizeX || coord.y >= sizeY); 
@@ -52,8 +52,8 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 { 
 	Point Prev{};
 	Point New{};
-	static int16_t action = 2;
-	static int16_t TIMEOUT = 10;
+	static int32_t action = 2;
+	static int32_t TIMEOUT = 10;
 	static bool bump;
 	// ROS_INFO("Turtle update Called  moving=%f", moving);
 	static bool atEnd = false;

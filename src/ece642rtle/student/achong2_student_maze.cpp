@@ -23,15 +23,15 @@
 
 #include "student.h"
 
-int16_t MOVING, STATE;
+int32_t MOVING, STATE;
 
 
-static const int16_t sizeX = 11;
-static const int16_t sizeY = 11;
-static const int16_t mapSize = 23;
-int16_t MAP[sizeX][sizeY];
-static int16_t mapX = 11;
-static int16_t mapY = 11;
+static const int32_t sizeX = 11;
+static const int32_t sizeY = 11;
+static const int32_t mapSize = 23;
+int32_t MAP[sizeX][sizeY];
+static int32_t mapX = 11;
+static int32_t mapY = 11;
 
 /*
  * This procedure takes the current turtle position and orientation and returns true=accept changes, false=do not accept changes
@@ -42,13 +42,12 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 {
   Point Prev{};
 	Point New{};
-	static int16_t action = 2;
-	static int16_t TIMEOUT = 40;
+	static int32_t action = 2;
+	static int32_t TIMEOUT = 40;
 	static bool bump;
 	ROS_INFO("Turtle update Called  MOVING=%f", MOVING);
-	static bool mod = true;
 	static bool atEnd = false;
-	static bool status;
+	// static bool status;
   //Only take action if status is moving
   if(MOVING== 0){
     //Update positions
@@ -73,7 +72,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
     nw_or = translateOrnt(orientation, nextMove,bump); //Find orientation of turtle
-    status= (STATE == action);
+    // status = (STATE == action);
     pos_ = translatePos(pos_, nextMove,nw_or,atEnd); //Find translation position of turtle
 
     }
@@ -96,6 +95,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
  */
 QPointF translatePos(QPointF pos_, turtleMove nextMove, int  orientation,bool atEnd) {
   //Take a decision if the turtle is taking an action and is not at the end
+  nextMove += 1;
   if((STATE == action) && atEnd == false) {
         switch(orientation){
           case LEFT:{

@@ -31,6 +31,6 @@ enum State{STOP,GO,ACT};
 static const int8_t action = 2;
 
 typedef struct Point{
-  int x;
-  int y;
+  float x;
+  float y;
 };
