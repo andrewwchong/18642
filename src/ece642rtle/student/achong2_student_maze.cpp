@@ -51,7 +51,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
   //Only take action if status is moving
   if(MOVING== 0){
     //Update positions
-	  Prev.x = float(pos_.x()); Prev.y = float(pos_.y());
+	  Prev.x = pos_.x(); Prev.y = pos_.y();
 	  New.x = pos_.x(); New.y = pos_.y();
     int orientation = nw_or;
 	  if (orientation < FORWARD){ //Left or right
@@ -134,7 +134,7 @@ QPointF translatePos(QPointF pos_ , int  orientation,bool atEnd) {
  */
  //stateFlag = state==orientation
  //bump = bumped
-int translateOrnt(int orientation, turtleMove nextMove,int bump) {
+int translateOrnt(int orientation ,int bump) {
  //Case on orientation
   switch(orientation){
     case LEFT:{ //Left
@@ -173,7 +173,7 @@ int translateOrnt(int orientation, turtleMove nextMove,int bump) {
 				STATE = action;}
       break;
 		}
-    case default:{
+    default:{
       break;
     }
   }

@@ -19,7 +19,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or);
 enum turtleMove {MOVE};
 QPointF translatePos(QPointF pos_ , int  orientation,bool atEnd);
 // QPointF translatePos(QPointF pos_, turtleMove nextMove);
-int translateOrnt(int orientation, turtleMove nextMove,int bump);
+int translateOrnt(int orientation ,int bump);
 // int translateOrnt(int orientation, turtleMove nextMove);
 turtleMove studentTurtleStep(bool bumped);
 
@@ -31,6 +31,6 @@ enum State{STOP,GO,ACT};
 static const int8_t action = 2;
 
 typedef struct Point{
-  float x;
-  float y;
+  int x;
+  int y;
 };
