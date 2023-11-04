@@ -30,7 +30,7 @@ enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
 enum State{STOP,GO,ACT};
 static const int8_t action = 2;
 
-typedef struct Point{
+struct Point{
   int x;
   int y;
 };
