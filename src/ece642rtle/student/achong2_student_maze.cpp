@@ -23,7 +23,7 @@
 
 #include "student.h"
 
-float MOVING, STATE;
+int16_t MOVING, STATE;
 
 
 static const int16_t sizeX = 11;

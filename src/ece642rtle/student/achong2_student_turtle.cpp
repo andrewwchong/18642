@@ -30,7 +30,7 @@ turtleMove studentTurtleStep(bool bumped) {return MOVE;}
 
 // OK TO MODIFY BELOW THIS LINE
 //right 0, Left 1, Forward 2, 3 Backward
-float moving, state;
+int16_t moving, state;
 
 static const int16_t sizeX = 11;
 static const int16_t sizeY = 11;
