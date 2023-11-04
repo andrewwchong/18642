@@ -21,8 +21,6 @@ QPointF translatePos(QPointF pos_ , int  orientation,bool atEnd);
 // QPointF translatePos(QPointF pos_, turtleMove nextMove);
 int translateOrnt(int orientation ,int bump);
 // int translateOrnt(int orientation, turtleMove nextMove);
-turtleMove studentTurtleStep(bool bumped);
-
 // OK to change below this line
 bool studentMoveTurtle(QPointF& pos_, int& nw_or);
 

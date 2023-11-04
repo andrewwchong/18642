@@ -21,12 +21,6 @@
 
 #include "student.h"
 
-// Ignore this line until project 5
-turtleMove studentTurtleStep(bool bumped) {return MOVE;}
-
-
-
-
 
 // OK TO MODIFY BELOW THIS LINE
 //right 0, Left 1, Forward 2, 3 Backward
@@ -61,7 +55,7 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
   	if(moving == 0){
 	  Prev.x = pos_.x(); Prev.y = pos_.y();
 		//atend checks if space is at the end of maze
-		atEnd = atend(pos_.x(), pos_.y());
+		atEnd = atend((int)(float)(pos_.x()), (int)(float)(pos_.y()));
 
 		//State 0 means it stays in place, state 1 means it moves
 		// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
@@ -112,9 +106,9 @@ bool studentMoveTurtle(QPointF& pos_, int& orientation)
 					break;
 				}
 			}
-			ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
+			// ROS_INFO("Considering (%d,%d) with val %d", tempCoord.x, tempCoord.y,map[tempCoord.x][tempCoord.y]);
 			//bump checks if the space in front of it is blocked
-			bump = bumped(Prev.x,Prev.y,tempCoord.x,tempCoord.y);
+			bump = bumped((int)(float)(Prev.x),(int)(float)(Prev.y),(int)(float)(tempCoord.x),(int)(float)(tempCoord.y));
 			if(map[tempX][tempY] <= min && !bump && inBounds(tempCoord)){
 				min = map[tempX][tempY];
 				minDirection = i; //This represents a direction in the enum
