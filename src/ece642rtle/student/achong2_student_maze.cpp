@@ -2,8 +2,8 @@
  * Originally by Philip Koopman (koopman@cmu.edu)
  * and Milda Zizyte (milda@cmu.edu)
  *
- * STUDENT NAME:
- * ANDREW ID:
+ * STUDENT NAME:Andrew Chong
+ * ANDREW ID:achong2
  * LAST UPDATE:
  *
  * This file keeps track of where the turtle is in the maze
