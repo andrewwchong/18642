@@ -45,7 +45,6 @@ bool inBounds(Point coord){
 bool studentMoveTurtle(QPointF& pos_, int& orientation)
 { 
 	Point Prev{};
-	Point New{};
 	static int32_t action = 2;
 	static int32_t TIMEOUT = 10;
 	static bool bump;

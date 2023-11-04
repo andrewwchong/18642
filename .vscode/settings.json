@@ -4,6 +4,7 @@
         "chrono": "cpp",
         "random": "cpp",
         "limits": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "*.txx": "cpp"
     }
 }
