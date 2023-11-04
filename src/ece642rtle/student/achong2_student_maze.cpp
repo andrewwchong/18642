@@ -65,7 +65,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 		  else{Prev.y+=1;} 
 		}
 		//bump checks if the space in front of it is blocked
-		bump = bumped(floor(Prev.x),floor(Prev.y),floor(New.x),floor(New.y));
+		bump = bumped((int)(float)(Prev.x),(int)(float)(Prev.y),(int)(float)(New.x),(int)(float)(New.y));
 		//aent checks if space is at the end of maze
 		atEnd = atend((int)(float)(pos_.x()), (int)(float)(pos_.y()));
 		//State 0 means it stays in place, state 1 means it moves 
