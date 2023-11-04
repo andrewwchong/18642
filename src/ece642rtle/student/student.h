@@ -31,6 +31,6 @@ enum State{STOP,GO,ACT};
 static const int8_t action = 2;
 
 struct Point{
-  int x;
-  int y;
+  double x;
+  double y;
 };

@@ -71,7 +71,7 @@ bool moveTurtle(QPointF& pos_, int& nw_or)
 		//State 0 means it stays in place, state 1 means it moves
 
     turtleMove nextMove = studentTurtleStep(bump); // define your own turtleMove enum or structure
-    nw_or = translateOrnt(orientation, nextMove,bump); //Find orientation of turtle
+    nw_or = translateOrnt(orientation,bump); //Find orientation of turtle
     // status = (STATE == action);
     pos_ = translatePos(pos_,nw_or,atEnd); //Find translation position of turtle
 
