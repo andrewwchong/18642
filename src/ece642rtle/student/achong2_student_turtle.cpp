@@ -208,6 +208,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				displayVisits(map[mapX][mapY]);
 
 				//return mindirections
+				STATE = 1;
 				return MOVE;
 			}
 			case 5:{//S5:Goal
