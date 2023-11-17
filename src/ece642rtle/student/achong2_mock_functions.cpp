@@ -55,7 +55,6 @@ void ROS_ERROR(std::string e) {
 }
 
 
-
 /*
  * Takes a position and a turtleMove and returns a new position
  * based on the move
@@ -126,3 +125,4 @@ int translateOrnt(int orientation) {
 
   return mock_orientation;
 }
+ls

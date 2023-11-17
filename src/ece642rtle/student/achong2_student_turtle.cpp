@@ -19,7 +19,26 @@
 // T3: source devel/setup.bash && rosrun ece642rtle ece642rtle_student
 
 
+
+#ifdef testing
+#include "student_mock.h"
+#endif
+#ifndef testing
 #include "student.h"
+#include <ros/ros.h>
+#include <boost/bind.hpp>
+#include <ece642rtle/timeInt8.h>
+#include <std_msgs/Empty.h>
+#include <ece642rtle/RTIbump.h>
+#include <ece642rtle/RTIatend.h>
+#include <ece642rtle/PoseOrntBundle.h>
+#include <ece642rtle/bumpEcho.h>
+#include <ece642rtle/aendEcho.h>
+#include <QPointF>
+#endif
+
+
+// #include "student.h"
 
 
 // OK TO MODIFY BELOW THIS LINE
