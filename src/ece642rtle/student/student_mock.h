@@ -1,15 +1,13 @@
-// #include <ros/ros.h>
-// #include <boost/bind.hpp>
-// #include <ece642rtle/timeInt8.h>
-// #include <std_msgs/Empty.h>
-// #include <ece642rtle/RTIbump.h>
-// #include <ece642rtle/RTIatend.h>
-// #include <ece642rtle/PoseOrntBundle.h>
-// #include <ece642rtle/bumpEcho.h>
-// #include <ece642rtle/aendEcho.h>
-// #include <QPointF>
-
-
+#include <ros/ros.h>
+#include <boost/bind.hpp>
+#include <ece642rtle/timeInt8.h>
+#include <std_msgs/Empty.h>
+#include <ece642rtle/RTIbump.h>
+#include <ece642rtle/RTIatend.h>
+#include <ece642rtle/PoseOrntBundle.h>
+#include <ece642rtle/bumpEcho.h>
+#include <ece642rtle/aendEcho.h>
+#include <QPointF>
 #include <stdint.h>
 
 // Functions to interface with ROS. Don't change these lines!
@@ -17,6 +15,15 @@ bool bumped(int x1,int y1,int x2,int y2);
 bool atend(int x, int y);
 void displayVisits(int visits);
 // bool moveTurtle(QPointF& pos_, int& nw_or);
+
+
+
+
+// Functions to interface with ROS. Don't change these lines!
+bool bumped(int x1,int y1,int x2,int y2);
+bool atend(int x, int y);
+void displayVisits(int visits);
+bool moveTurtle(QPointF& pos_, int& nw_or);
 
 // Scope-preserving changes to these lines permitted (see p5 writeup)
 enum turtleMove {MOVE, NO_MOVE, TURN_LEFT};
@@ -28,9 +35,8 @@ int translateOrnt(int orientation ,turtleMove move);
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
 
 enum Direction{NORTH, WEST, SOUTH, EAST};
-enum State{STOP,GO,ACT};
-static const int8_t action = 2;
 static const int numDirections = 4;
+
 
 struct Point{
   double x;
