@@ -8,6 +8,7 @@
 #include <ece642rtle/bumpEcho.h>
 #include <ece642rtle/aendEcho.h>
 #include <QPointF>
+#include <stdint.h>
 
 // Functions to interface with ROS. Don't change these lines!
 bool bumped(int x1,int y1,int x2,int y2);

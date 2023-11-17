@@ -5,6 +5,7 @@
 
 #include "student_mock.h"
 #include <iostream>
+ #include <stdint.h>
 
 
 int32_t MOVING, STATE;
@@ -90,39 +91,23 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
         }
         //Update Map
         MAP[mapX][mapY] += 1;
-        displayVisits(MAP[mapX][mapY]);
+        // displayVisits(MAP[mapX][mapY]);
       }
   return pos_;
 }
+
+
 
 /*
  * Takes an orientation and a turtleMove and returns a new orienation
  * based on the move
  */
-int translateOrnt(int orientation) {
- //Case on orientation
-  switch(orientation){
-    case LEFT:{ //Left
-			mock_orientation = FORWARD;  STATE = GO; 
-      break;
-		}
-		case RIGHT:{//Right
-			mock_orientation = FORWARD;  STATE = GO; 
-      break;
-		}
-		case FORWARD:{ //Forward
-			mock_orientation = BACKWARD;  STATE = GO; 
-      break;
-  	}
-  	 case BACKWARD:{ //Backward
-			mock_orientation = LEFT;  STATE = GO; 
-      break;
-		}
-    default:{
-      break;
+ //stateFlag = state==orientation
+ //bump = bumped
+int translateOrnt(int orientation ,turtleMove move) {
+    //Only need to turn left
+    if(move == TURN_LEFT){
+        mock_orientation = static_cast<Direction>((orientation+1)%numDirections);
     }
-  }
-
-  return mock_orientation;
+    return mock_orientation;
 }
-ls

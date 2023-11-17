@@ -14,6 +14,23 @@ turtleMove move_state;
 int orientation = NORTH;
 int numTurn = 0;
 
+void setAtend(bool end) {
+  atEnd = end;
+}
+
+/* Functions used to instrument CUnit tests */
+int test_orientation_result() {
+  return orientation;
+}
+
+void numTurns(int turns) {
+  numTurn = turns;
+}
+
+void setOrientation(Direction ornt) {
+  orientation = ornt;
+}
+
 
 
 void test_RESET() {
@@ -131,8 +148,8 @@ int main() {
   }
 
   /* add the tests to the suite */
-  if ((NULL == CU_add_test(pSuite, "test of transition T1", test_t1)) ||
-      (NULL == CU_add_test(pSuite, "test of transition T2", test_t2)))
+  if ((NULL == CU_add_test(pSuite, "test of transition T1", test_RESET)) ||
+      (NULL == CU_add_test(pSuite, "test of transition T2", test_END)))
     {
       CU_cleanup_registry();
       return CU_get_error();
@@ -148,19 +165,3 @@ int main() {
 }
 
 
-void setAtend(bool end) {
-  atEnd = end;
-}
-
-/* Functions used to instrument CUnit tests */
-int test_orientation_result() {
-  return orientation;
-}
-
-void numTurns(int turns) {
-  numTurn = turns;
-}
-
-void setOrientation(Direction ornt) {
-  orientation = ornt;
-}

@@ -35,6 +35,7 @@
 #include <ece642rtle/bumpEcho.h>
 #include <ece642rtle/aendEcho.h>
 #include <QPointF>
+#include <stdint.h>
 #endif
 
 
