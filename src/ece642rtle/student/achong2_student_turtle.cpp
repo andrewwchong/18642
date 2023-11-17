@@ -155,6 +155,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					break;
 				}
 				//3. numTurns <4
+				NUM_TURNS++;
 				DIRECTION = (DIRECTION+1)%numDirections;
 				return TURN_LEFT;
 			}
@@ -204,13 +205,10 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				mapY = tempY;
 				
 				map[mapX][mapY] += 1;
-
 				displayVisits(map[mapX][mapY]);
 
 				//return mindirections
 				return MOVE;
-
-
 			}
 			case 5:{//S5:Goal
 				return NO_MOVE;
