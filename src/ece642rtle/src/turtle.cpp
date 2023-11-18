@@ -84,6 +84,7 @@ namespace ece642rtle
   
   bool Turtle::RTIatendCallback(ece642rtle::RTIatend::Request& req, ece642rtle::RTIatend::Response& res) {
     res.atend = turtle_maze_.at_end(((float)(req.x)+0.5), ((float)(req.y)+0.5) ); 
+    return true;
   }
   
   void Turtle::rotateImage()
