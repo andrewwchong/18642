@@ -78,19 +78,13 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
  */
 
 void tickInterrupt(ros::Time t) {
-    //   ROS_INFO("[[%ld ns]] 'Ticks' was sent.", t.toNSec());
 }
 
 void visitInterrupt(ros::Time t, int visits) {
-//   ROS_INFO("[[%ld ns]] 'Visits' was sent. Data: %d", t.toNSec(), visits);
 }
 
-// t is the time of the bump request, not answer
 void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
-//   ROS_INFO("[[%ld ns]] 'Bump request' was sent. Data: x1 = %d, y1 = %d, x2 = %d, y2 = %d, resp = %s", t.toNSec(), x1, y1, x2, y2, bumped ? "true" : "false");
 }
 
-// t is the time of the at_end request, not answer
 void atEndInterrupt(ros::Time t, int x, int y, bool atEnd) {
-//   ROS_INFO("[[%ld ns]] 'At End Request' was sent. Data: x = %d, y = %d, resp = %s", t.toNSec(), x, y, atEnd ? "true" : "false");
 }
