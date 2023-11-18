@@ -7,7 +7,7 @@
 // #include <ece642rtle/PoseOrntBundle.h>
 // #include <ece642rtle/bumpEcho.h>
 // #include <ece642rtle/aendEcho.h>
-// #include <stdint.h>
+#include <stdint.h>
 #include <iostream>
 // #include <QPointF>
 
