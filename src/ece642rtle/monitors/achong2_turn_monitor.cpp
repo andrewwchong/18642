@@ -30,7 +30,7 @@ inline int abs(int x) {
  * to the previous location and throw an invariant violation
  * if the locations differ by more than 1 in Manhattan Distance.
  */
-void orientationInterrupt(ros::Time t, int x, int y, Orientation o) {
+void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // Print pose info
   // Last conditional makes sure that if suppress_double_visits is
   // true, that the same pose isn't printed twice
