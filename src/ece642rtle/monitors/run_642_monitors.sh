@@ -60,11 +60,11 @@ MONITORS=""
 
 for mon in "$@"
 do
-    if [[ "${mon:0:6}" != "ece642" ]]; then
-	echo "Monitor $m does not begin with ece642! Exiting"
-	kill_processes $MONITORS
-	echo "Monitor $m does not begin with ece642! Exiting"
-    fi
+    # if [[ "${mon:0:6}" != "ece642" ]]; then
+	# echo "Monitor $m does not begin with ece642! Exiting"
+	# kill_processes $MONITORS
+	# echo "Monitor $m does not begin with ece642! Exiting"
+    # fi
     echo "Starting monitor $mon"
     stdbuf -oL rosrun ece642rtle $mon | tee $mon.output.tmp&
     sleep 1
