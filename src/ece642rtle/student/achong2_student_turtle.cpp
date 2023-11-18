@@ -26,20 +26,7 @@
 #ifndef testing
 #include "student.h"
 #include <ros/ros.h>
-#include <boost/bind.hpp>
-#include <ece642rtle/timeInt8.h>
-#include <std_msgs/Empty.h>
-#include <ece642rtle/RTIbump.h>
-#include <ece642rtle/RTIatend.h>
-#include <ece642rtle/PoseOrntBundle.h>
-#include <ece642rtle/bumpEcho.h>
-#include <ece642rtle/aendEcho.h>
-#include <QPointF>
-#include <stdint.h>
 #endif
-
-
-// #include "student.h"
 
 
 // OK TO MODIFY BELOW THIS LINE
@@ -67,26 +54,16 @@ bool inBounds(Point coord){
 
 
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
-{ 
-	// Point Prev{};
-  	
+{   	
 	//State 0 means it stays in place, state 1 means it moves
-	// enum Direction{LEFT, RIGHT, FORWARD, BACKWARD};
 	int minDirection = -1;
 	int min = 1000;
-	// Point tempCoord{};	
-	// tempCoord.x = Prev.x;
-	// tempCoord.y = Prev.y;	
-	// Point minCoord{};
-	// minCoord.x = Prev.x;
-	// minCoord.y = Prev.y;
+
 	int tempX = mapX;
 	int tempY = mapY;
-	// int minX = mapX;
-	// int minY = mapY;
-
-
-
+	if(atEnd){
+		return NO_MOVE;
+	}
 
 	while(true){
 		switch(STATE){
@@ -146,7 +123,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					minDirection = DIRECTION; //This represents a direction in the enum
 					// minX = tempX;
 					// minY = tempY;
-					ROS_INFO("New coord (%d,%d) with val %d", tempX,tempY,min);
+					// ROS_INFO("New coord (%d,%d) with val %d", tempX,tempY,min);
 				} 
 
 				//4. numTurns == 4
@@ -168,11 +145,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					DIRECTION = (DIRECTION+1)%numDirections;
 					return TURN_LEFT;
 				}
-
-
 				tempX = mapX;
 				tempY = mapY;
-
 				switch(DIRECTION){
 					//TODO:need to change these
 					case WEST:{
@@ -199,14 +173,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						break;
 					}
 				}
-
-
-				ROS_INFO("Go to (%d,%d)", mapX,mapY);
+				// ROS_INFO("Go to (%d,%d)", mapX,mapY);
 				mapX = tempX;
 				mapY = tempY;
 				
 				map[mapX][mapY] += 1;
-				displayVisits(map[mapX][mapY]);
+				// displayVisits(map[mapX][mapY]);
 
 				//return mindirections
 				STATE = 1;

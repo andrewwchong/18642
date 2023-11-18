@@ -5,111 +5,111 @@
  * dummy turtle statechart. It uses the CUnit framework (cunit.sourceforge.net)
  */
 
-#include "student_mock.h"
 #include <CUnit/Basic.h>
+#include "student_mock.h"
 
-bool bump = false;
-bool atEnd = false;
 turtleMove move_state;
-int orientation = NORTH;
+Direction mock_orientation;
 int numTurn = 0;
-
-void setAtend(bool end) {
-  atEnd = end;
-}
-
-/* Functions used to instrument CUnit tests */
-int test_orientation_result() {
-  return orientation;
-}
 
 void numTurns(int turns) {
   numTurn = turns;
 }
 
-void setOrientation(Direction ornt) {
-  orientation = ornt;
-}
-
-
-
 void test_RESET() {
+  bool bump = get_bump();
+  bool atEnd = get_atEnd();
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_orientation = get_orientation();
   
   CU_ASSERT_EQUAL(atEnd, false);
-  CU_ASSERT_EQUAL(orientation, NORTH);
-  CU_ASSERT_EQUAL(move_state, NO_MOVE);
+  CU_ASSERT_EQUAL(mock_orientation, NORTH);
+  CU_ASSERT_EQUAL(move_state, TURN_LEFT);
 }
 
 
 void test_END() {
-
+  bool bump = get_bump();
   setAtend(true);
+  bool atEnd = get_atEnd();
+  // printf("atend %d",atEnd);
   setOrientation(NORTH);
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(orientation, NORTH);
+  CU_ASSERT_EQUAL(mock_orientation, NORTH);
   CU_ASSERT_EQUAL(move_state, NO_MOVE);
 }
 
 
 void test_NORTH() {
+  bool bump = get_bump();
+  setAtend(false);
+  bool atEnd = get_atEnd();
+
   setAtend(false);
   numTurns(0); 
-  setOrientation(EAST);
+  setOrientation(NORTH);
+  mock_orientation = get_orientation();
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_translateOrnt(mock_orientation ,move_state);
+  mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(orientation, NORTH);
+  CU_ASSERT_EQUAL(mock_orientation, WEST);
   CU_ASSERT_EQUAL(move_state, TURN_LEFT);
 }
 
 void test_SOUTH() {
+  bool bump = get_bump();
+  setAtend(false);
+  bool atEnd = get_atEnd();
+
   setAtend(false);
   numTurns(0); 
-  setOrientation(WEST);
+  setOrientation(SOUTH);
+  mock_orientation = get_orientation();
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_translateOrnt(mock_orientation ,move_state);
+  mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(orientation, SOUTH);
+  CU_ASSERT_EQUAL(mock_orientation, EAST);
   CU_ASSERT_EQUAL(move_state, TURN_LEFT);
 }
 
 void test_EAST() {
+  bool bump = get_bump();
+  setAtend(false);
+  bool atEnd = get_atEnd();
+
   setAtend(false);
   numTurns(0); 
-  setOrientation(SOUTH);
+  setOrientation(EAST);
+  mock_orientation = get_orientation();
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_translateOrnt(mock_orientation ,move_state);
+  mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(orientation, EAST);
+  CU_ASSERT_EQUAL(mock_orientation, NORTH);
   CU_ASSERT_EQUAL(move_state, TURN_LEFT);
 }
 
-void test_WEST() {
+void test_WEST_MOVE() {
+   bool bump = get_bump();
+  setAtend(false);
+  bool atEnd = get_atEnd();
+
   setAtend(false);
   numTurns(0); 
-  setOrientation(NORTH);
-  move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
-
-  CU_ASSERT_EQUAL(orientation, WEST);
-  CU_ASSERT_EQUAL(move_state, TURN_LEFT);
-}
-
-
-void test_MOVE() {
-  setAtend(false);
-  numTurns(4); 
   setOrientation(WEST);
+  mock_orientation = get_orientation();
   move_state = studentMoveTurtle(bump, atEnd);
-  orientation = test_orientation_result();
+  mock_translateOrnt(mock_orientation ,move_state);
+  mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(orientation, WEST);
+  CU_ASSERT_EQUAL(mock_orientation, WEST);
   CU_ASSERT_EQUAL(move_state, MOVE);
 }
+
 
 
 // void test_t2() {
@@ -123,6 +123,10 @@ void test_MOVE() {
 
 int init() {
   // Any test initialization code goes here
+  setOrientation(NORTH);
+  setAtend(false);
+  numTurns(0); 
+
   return 0;
 }
 
@@ -148,8 +152,12 @@ int main() {
   }
 
   /* add the tests to the suite */
-  if ((NULL == CU_add_test(pSuite, "test of transition T1", test_RESET)) ||
-      (NULL == CU_add_test(pSuite, "test of transition T2", test_END)))
+  if ((NULL == CU_add_test(pSuite, "test of test_RESET", test_RESET)) ||
+      (NULL == CU_add_test(pSuite, "test of test_NORTH", test_NORTH)) ||
+      (NULL == CU_add_test(pSuite, "test of test_SOUTH", test_SOUTH)) ||
+      (NULL == CU_add_test(pSuite, "test of test_EAST", test_EAST)) ||
+      (NULL == CU_add_test(pSuite, "test of test_WEST", test_WEST_MOVE)) ||
+      (NULL == CU_add_test(pSuite, "test of test_END", test_END)))
     {
       CU_cleanup_registry();
       return CU_get_error();
