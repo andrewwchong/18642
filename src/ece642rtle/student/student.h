@@ -28,6 +28,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
 enum Direction{NORTH, WEST, SOUTH, EAST};
 static const int numDirections = 4;
 
+enum STATE{DUMMY, S1_CHECK_END, S2_CHECK_FUNCTION,S3_CHECK_DIRECTION,S4_MOVE,S5_GOAL}
 
 struct Point{
   double x;

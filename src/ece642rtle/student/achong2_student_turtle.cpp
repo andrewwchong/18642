@@ -32,8 +32,8 @@
 // OK TO MODIFY BELOW THIS LINE
 //right 0, Left 1, Forward 2, 3 Backward
 static int32_t NUM_TURNS = 0;
-static int32_t STATE=1;
-static int32_t DIRECTION = NORTH;
+static int32_t STATE=S1_CHECK_END;
+static int32_t DIRECTION = WEST;
 static int32_t TURNS = 0;
 
 static const int32_t sizeX = 11;
@@ -67,31 +67,37 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 
 	while(true){
 		switch(STATE){
-			case 1:{ //S1: Check at End
+			case S1_CHECK_END:{ //S1: Check at End
 				//S1
 				if(atEnd){
 					//2. atEnd = True
-					STATE = 5;
+					STATE = S5_GOAL;
 					break;
 				}
 				else{
 					//1. atEnd = False
-					STATE = 2;
+					STATE = S2_CHECK_FUNCTION;
 					break;
 				}
 				break;
 			}
-			case 2:{// S2:Check Functions
+			case S2_CHECK_FUNCTION:{// S2:Check Functions
 				NUM_TURNS = 0;
 				minDirection = -1;
 				min = 1000;
-				STATE = 3;
+				STATE = S3_CHECK_DIRECTION;
 				break;
 			}
-			case 3:{ //S3:CheckDirection
+			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
+				//4. numTurns == 4
+				if(NUM_TURNS == 4){
+					TURNS=0;
+					STATE = S4_MOVE;
+					break;
+				}
+
 				switch(DIRECTION){
-					//TODO:need to change these
 					case WEST:{
 						tempX = mapX-1;
 						tempY = mapY;
@@ -115,23 +121,13 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					default:{
 						break;
 					}
-				}
-				
+				}		
 
 				if(map[tempX][tempY] <= min && !bump){
 					min = map[tempX][tempY];
-					minDirection = DIRECTION; //This represents a direction in the enum
-					// minX = tempX;
-					// minY = tempY;
-					// ROS_INFO("New coord (%d,%d) with val %d", tempX,tempY,min);
+					minDirection = NUM_TURNS; //This represents a direction in the enum
 				} 
-
-				//4. numTurns == 4
-				if(NUM_TURNS == 4){
-					TURNS=0;
-					STATE = 4;
-					break;
-				}
+			
 				//3. numTurns <4
 				NUM_TURNS++;
 				DIRECTION = (DIRECTION+1)%numDirections;
@@ -148,7 +144,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				tempX = mapX;
 				tempY = mapY;
 				switch(DIRECTION){
-					//TODO:need to change these
 					case WEST:{
 						tempX = mapX-1;
 						tempY = mapY;
@@ -178,10 +173,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				mapY = tempY;
 				
 				map[mapX][mapY] += 1;
-				// displayVisits(map[mapX][mapY]);
-
 				//return mindirections
-				STATE = 1;
+				STATE = S1_CHECK_END;
 				return MOVE;
 			}
 			case 5:{//S5:Goal
