@@ -42,30 +42,30 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
   //Take a decision if the turtle is taking an action and is not at the end
   if( nextMove == MOVE && atEnd == false) {
         switch(orientation){
-        case NORTH:{
-            pos_.setY(pos_.y() + 1);//Increment y position by 1
-            mapY += 1;
-            break;
-          }
-          case WEST:{
-            pos_.setX(pos_.x() - 1); //Decrement x position by 1
-            mapX -= 1;	
-            break;
-          }
-          case SOUTH:{
-            pos_.setY(pos_.y() - 1); //Decrement y position by 1
-            mapY -= 1;
-            break;
-          }
-          case EAST:{
-            pos_.setX(pos_.x() + 1); //Increment x position by 1
-            mapX += 1;
-            break;
-          }
+          case NORTH:{
+              pos_.setY(pos_.y() + 1);//Increment y position by 1
+              mapY += 1;
+              break;
+            }
+            case WEST:{
+              pos_.setX(pos_.x() - 1); //Decrement x position by 1
+              mapX -= 1;	
+              break;
+            }
+            case SOUTH:{
+              pos_.setY(pos_.y() - 1); //Decrement y position by 1
+              mapY -= 1;
+              break;
+            }
+            case EAST:{
+              pos_.setX(pos_.x() + 1); //Increment x position by 1
+              mapX += 1;
+              break;
+            }
 
-          default:{
-            ROS_ERROR("undefined direction");
-          }
+            default:{
+              ROS_ERROR("undefined direction");
+            }
         }
         //Update Map
         MAP[mapX][mapY] += 1;
@@ -98,7 +98,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point Prev{};
 	Point New{};
-	static int32_t TIMEOUT = 40;
+	static int32_t TIMEOUT = 10;
 	static bool bump;
 	ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;

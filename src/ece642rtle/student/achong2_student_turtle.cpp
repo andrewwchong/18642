@@ -131,6 +131,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//3. numTurns <4
 				NUM_TURNS++;
 				DIRECTION = (DIRECTION+1)%numDirections;
+				ROS_INFO("Turning left to measure");
+
 				return TURN_LEFT;
 			}
 			case 4:{//S4: Move
@@ -139,6 +141,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				if(minDirection > TURNS){
 					TURNS ++;
 					DIRECTION = (DIRECTION+1)%numDirections;
+					ROS_INFO("Turning left to direction");
 					return TURN_LEFT;
 				}
 				tempX = mapX;
@@ -175,6 +178,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				map[mapX][mapY] += 1;
 				//return mindirections
 				STATE = S1_CHECK_END;
+				ROS_INFO("Moving forward");
 				return MOVE;
 			}
 			case 5:{//S5:Goal
@@ -182,6 +186,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			}
 			default:{
 				//ERROR
+				ROS_ERROR("undefined state");
 			} 
 
 	}
