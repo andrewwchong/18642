@@ -43,26 +43,30 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
   if( nextMove == MOVE && atEnd == false) {
         switch(orientation){
           case NORTH:{
-              ROS_INFO("Go North:");
-              pos_.setY(pos_.y() - 1);//Increment y position by 1
+              ROS_INFO("Go North: from %d,%d");
+              pos_.setY(pos_.y() + 1);//Increment y position by 1
+              ROS_INFO("To %d,%d");
               mapY -= 1;
               break;
             }
             case WEST:{
-              ROS_INFO("Go west:");
+              ROS_INFO("Go west: from %d,%d");
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
+              ROS_INFO("To %d,%d");
               mapX -= 1;	
               break;
             }
             case SOUTH:{
-              ROS_INFO("Go south:");
-              pos_.setY(pos_.y() + 1); //Decrement y position by 1
+              ROS_INFO("Go south: from %d,%d");
+              pos_.setY(pos_.y() - 1); //Decrement y position by 1
+              ROS_INFO("To %d,%d");
               mapY += 1;
               break;
             }
             case EAST:{
-              ROS_INFO("Go east:");
+              ROS_INFO("Go east: from %d,%d");
               pos_.setX(pos_.x() + 1); //Increment x position by 1
+              ROS_INFO("To %d,%d");
               mapX += 1;
               break;
             }
@@ -116,7 +120,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 
         switch(orientation){
             case NORTH:{
-                New.y -= 1; //Increment x position by 1
+                New.y += 1; //Increment x position by 1
                 break;
             }
             case WEST:{
@@ -124,7 +128,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
                 break;
             }
             case SOUTH:{
-                New.y += 1;//Increment y position by 1
+                New.y -= 1;//Increment y position by 1
                 break;
             }
             case EAST:{

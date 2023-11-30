@@ -112,12 +112,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 					case NORTH:{
 						tempX = mapX;
-						tempY = mapY-1;
+						tempY = mapY+1;
 						break;
 					}
 					case SOUTH:{
 						tempX = mapX;
-						tempY = mapY+1;
+						tempY = mapY-1;
 						break;
 					}
 					default:{
@@ -180,7 +180,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				map[mapX][mapY] += 1;
 				//return mindirections
 				STATE = S1_CHECK_END;
-				ROS_INFO("Moving forward");
+				ROS_INFO("Moving forward: direction %d",DIRECTION);
 				return MOVE;
 			}
 			case 5:{//S5:Goal
