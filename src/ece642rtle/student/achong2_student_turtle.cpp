@@ -43,6 +43,9 @@ int32_t map[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
 
+
+static int minDirection = -1;
+
 bool inBounds(Point coord){
 	return !(coord.x < 0 || coord.y < 0 || coord.x >= sizeX || coord.y >= sizeY); 
 }
@@ -56,7 +59,6 @@ bool inBounds(Point coord){
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
 	//State 0 means it stays in place, state 1 means it moves
-	int minDirection = -1;
 	int min = 1000;
 
 	int tempX = mapX;
@@ -91,9 +93,10 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
 				//4. numTurns == 4
-				if(NUM_TURNS == 4){
+				if(NUM_TURNS >= 4){
 					TURNS=0;
 					STATE = S4_MOVE;
+					ROS_INFO("Done turning, Min directions:%d",minDirection);
 					break;
 				}
 
