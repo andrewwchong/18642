@@ -132,7 +132,30 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			
 				//3. numTurns <4
 				NUM_TURNS++;
-				DIRECTION = (DIRECTION+1)%numDirections;
+
+				
+				// DIRECTION = (DIRECTION+1)%numDirections;
+				switch(DIRECTION){
+					case NORTH:{
+						DIRECTION = EAST;
+						break;
+						}
+						case WEST:{
+						DIRECTION = NORTH;
+						break;
+						}
+						case SOUTH:{
+						DIRECTION = WEST;
+						break;
+						}
+						case EAST:{
+						DIRECTION = SOUTH;
+						break;
+						}
+						default:{
+						ROS_ERROR("undefined direction");
+						}
+				}
 				ROS_INFO("Turning right to measure");
 
 				return TURN_RIGHT;
@@ -142,7 +165,28 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//Move towards Direction
 				if(minDirection > TURNS){
 					TURNS ++;
-					DIRECTION = (DIRECTION+1)%numDirections;
+					// DIRECTION = (DIRECTION+1)%numDirections;
+					switch(DIRECTION){
+						case NORTH:{
+							DIRECTION = EAST;
+							break;
+							}
+							case WEST:{
+							DIRECTION = NORTH;
+							break;
+							}
+							case SOUTH:{
+							DIRECTION = WEST;
+							break;
+							}
+							case EAST:{
+							DIRECTION = SOUTH;
+							break;
+							}
+							default:{
+							ROS_ERROR("undefined direction");
+							}
+					}
 					ROS_INFO("Turning right to direction");
 					return TURN_RIGHT;
 				}
@@ -161,12 +205,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 					case NORTH:{
 						tempX = mapX;
-						tempY = mapY-1;
+						tempY = mapY+1;
 						break;
 					}
 					case SOUTH:{
 						tempX = mapX;
-						tempY = mapY+1;
+						tempY = mapY-1;
 						break;
 					}
 					default:{

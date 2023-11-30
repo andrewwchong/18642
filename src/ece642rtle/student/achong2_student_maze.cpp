@@ -43,30 +43,30 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
   if( nextMove == MOVE && atEnd == false) {
         switch(orientation){
           case NORTH:{
-              ROS_INFO("Go North: from %d,%d");
+              ROS_INFO("Go North: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() + 1);//Increment y position by 1
-              ROS_INFO("To %d,%d");
+              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               mapY -= 1;
               break;
             }
             case WEST:{
-              ROS_INFO("Go west: from %d,%d");
+              ROS_INFO("Go west: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
-              ROS_INFO("To %d,%d");
+              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               mapX -= 1;	
               break;
             }
             case SOUTH:{
-              ROS_INFO("Go south: from %d,%d");
+              ROS_INFO("Go south: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() - 1); //Decrement y position by 1
-              ROS_INFO("To %d,%d");
+              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               mapY += 1;
               break;
             }
             case EAST:{
-              ROS_INFO("Go east: from %d,%d");
+              ROS_INFO("Go east: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() + 1); //Increment x position by 1
-              ROS_INFO("To %d,%d");
+              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               mapX += 1;
               break;
             }
@@ -92,7 +92,28 @@ int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn right
     ROS_INFO("Before turn: %d",orientation);
     if(move == TURN_RIGHT){
-        orientation = (orientation+1)%numDirections;
+        // orientation = (orientation+1)%numDirections;
+         switch(orientation){
+          case NORTH:{
+              orientation = EAST;
+              break;
+            }
+            case WEST:{
+              orientation = NORTH;
+              break;
+            }
+            case SOUTH:{
+              orientation = WEST;
+              break;
+            }
+            case EAST:{
+              orientation = SOUTH;
+              break;
+            }
+            default:{
+              ROS_ERROR("undefined direction");
+            }
+         }
     }
     ROS_INFO("After turn: %d",orientation);
     return orientation;
