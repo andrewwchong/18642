@@ -90,7 +90,6 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
  //bump = bumped
 int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn right
-    ROS_INFO("Before turn: %d",orientation);
     if(move == TURN_RIGHT){
         // orientation = (orientation+1)%numDirections;
          switch(orientation){
@@ -167,6 +166,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
       
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),static_cast<int>(New.x),static_cast<int>(New.y));
+				ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),static_cast<int>(New.x),static_cast<int>(New.y),bump);
 
         //atend checks if space is at the end of maze
         atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
