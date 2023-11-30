@@ -17,7 +17,7 @@ void displayVisits(int visits);
 bool moveTurtle(QPointF& pos_, int& nw_or);
 
 // Scope-preserving changes to these lines permitted (see p5 writeup)
-enum turtleMove {MOVE, NO_MOVE, TURN_LEFT};
+enum turtleMove {MOVE, NO_MOVE, TURN_RIGHT};
 QPointF translatePos(QPointF& pos_ , int  orientation,turtleMove nextMove,bool atEnd);
 // QPointF translatePos(QPointF pos_, turtleMove nextMove);
 int translateOrnt(int orientation ,turtleMove move);
@@ -25,7 +25,10 @@ int translateOrnt(int orientation ,turtleMove move);
 // OK to change below this line
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
 
-enum Direction{NORTH, WEST, SOUTH, EAST};
+// enum Direction{NORTH, WEST, SOUTH, EAST};
+
+enum Direction{EAST, SOUTH, WEST, NORTH};
+
 static const int numDirections = 4;
 
 enum STATE{DUMMY, S1_CHECK_END, S2_CHECK_FUNCTION,S3_CHECK_DIRECTION,S4_MOVE,S5_GOAL};

@@ -30,7 +30,6 @@
 
 
 // OK TO MODIFY BELOW THIS LINE
-//right 0, Left 1, Forward 2, 3 Backward
 static int32_t NUM_TURNS = 0;
 static int32_t STATE=S1_CHECK_END;
 static int32_t DIRECTION = WEST;
@@ -134,9 +133,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//3. numTurns <4
 				NUM_TURNS++;
 				DIRECTION = (DIRECTION+1)%numDirections;
-				ROS_INFO("Turning left to measure");
+				ROS_INFO("Turning right to measure");
 
-				return TURN_LEFT;
+				return TURN_RIGHT;
 			}
 			case 4:{//S4: Move
 				//Turn toward the firection first
@@ -144,8 +143,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				if(minDirection > TURNS){
 					TURNS ++;
 					DIRECTION = (DIRECTION+1)%numDirections;
-					ROS_INFO("Turning left to direction");
-					return TURN_LEFT;
+					ROS_INFO("Turning right to direction");
+					return TURN_RIGHT;
 				}
 				tempX = mapX;
 				tempY = mapY;

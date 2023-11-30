@@ -81,10 +81,12 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
  //stateFlag = state==orientation
  //bump = bumped
 int translateOrnt(int orientation ,turtleMove move) {
-    //Only need to turn left
-    if(move == TURN_LEFT){
-        orientation = (orientation-1)%numDirections;
+    //Only need to turn right
+    ROS_ERROR("Before turn: %d",orientation);
+    if(move == TURN_RIGHT){
+        orientation = (orientation+1)%numDirections;
     }
+    ROS_ERROR("After turn: %d",orientation);
     return orientation;
 }
 
@@ -98,7 +100,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point Prev{};
 	Point New{};
-	static int32_t TIMEOUT = 10;
+	static int32_t TIMEOUT = 100;
 	static bool bump;
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
