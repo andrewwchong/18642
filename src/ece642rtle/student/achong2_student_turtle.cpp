@@ -161,12 +161,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 					case NORTH:{
 						tempX = mapX;
-						tempY = mapY+1;
+						tempY = mapY-1;
 						break;
 					}
 					case SOUTH:{
 						tempX = mapX;
-						tempY = mapY-1;
+						tempY = mapY+1;
 						break;
 					}
 					default:{
