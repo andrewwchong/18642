@@ -43,21 +43,25 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
   if( nextMove == MOVE && atEnd == false) {
         switch(orientation){
           case NORTH:{
+              ROS_INFO("Go North:");
               pos_.setY(pos_.y() + 1);//Increment y position by 1
               mapY += 1;
               break;
             }
             case WEST:{
+              ROS_INFO("Go west:");
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
               mapX -= 1;	
               break;
             }
             case SOUTH:{
+              ROS_INFO("Go south:");
               pos_.setY(pos_.y() - 1); //Decrement y position by 1
               mapY -= 1;
               break;
             }
             case EAST:{
+              ROS_INFO("Go east:");
               pos_.setX(pos_.x() + 1); //Increment x position by 1
               mapX += 1;
               break;
