@@ -37,45 +37,49 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // true, that the same pose isn't printed twice
   int newX,newY;
   //if moved
-  if(!(X == x && Y == y)){
-    switch(last_orientation){
-      case NORTH:{
-          newX = X;
-          newY = Y-1;
-          break;
-      }
-      case WEST:{
-          newX = X-1;
-          newY = Y;
-          break;
-      }
-      case SOUTH:{
-          newX = X;
-          newY = Y+1;
-          break;
-      }
-      case EAST:{
-          newX = X+1;
-          newY = Y;
-          break;
-      }
-    }
-    if(!(newX == x && newY == y)){
-        ROS_WARN("VIOLATION: Did not move forward in facing direction. Should be (%d,%d), instead: (%d,%d)",newX,newY,x,y);
-      }
-  }
 
   
+  // Update this flag the first time the turtle moves
+  if (!moved) {
+    moved = true;
+  }
+  else{
+    if(!(X == x && Y == y)){
+      switch(last_orientation){
+        case NORTH:{
+            newX = X;
+            newY = Y-1;
+            break;
+        }
+        case WEST:{
+            newX = X-1;
+            newY = Y;
+            break;
+        }
+        case SOUTH:{
+            newX = X;
+            newY = Y+1;
+            break;
+        }
+        case EAST:{
+            newX = X+1;
+            newY = Y;
+            break;
+        }
+      }
+      if(!(newX == x && newY == y)){
+          ROS_WARN("VIOLATION: Did not move forward in facing direction. Should be (%d,%d), instead: (%d,%d)",newX,newY,x,y);
+        }
+    }
+  }
+
+
     
   // store last Pose in memory
   last_orientation =o;
   X = x;
   Y = y;
 
-  // Update this flag the first time the turtle moves
-  if (!moved) {
-    moved = true;
-  }
 }
 
 /*
