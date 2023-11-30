@@ -112,12 +112,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 					case NORTH:{
 						tempX = mapX;
-						tempY = mapY+1;
+						tempY = mapY-1;
 						break;
 					}
 					case SOUTH:{
 						tempX = mapX;
-						tempY = mapY-1;
+						tempY = mapY+1;
 						break;
 					}
 					default:{
@@ -140,16 +140,16 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						DIRECTION = EAST;
 						break;
 						}
-						case WEST:{
-						DIRECTION = NORTH;
+						case EAST:{
+						DIRECTION = SOUTH;
 						break;
 						}
 						case SOUTH:{
 						DIRECTION = WEST;
 						break;
 						}
-						case EAST:{
-						DIRECTION = SOUTH;
+						case WEST:{
+						DIRECTION = NORTH;
 						break;
 						}
 						default:{
@@ -171,16 +171,16 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 							DIRECTION = EAST;
 							break;
 							}
-							case WEST:{
-							DIRECTION = NORTH;
+							case EAST:{
+							DIRECTION = SOUTH;
 							break;
 							}
 							case SOUTH:{
 							DIRECTION = WEST;
 							break;
 							}
-							case EAST:{
-							DIRECTION = SOUTH;
+							case WEST:{
+							DIRECTION = NORTH;
 							break;
 							}
 							default:{
@@ -205,12 +205,12 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 					case NORTH:{
 						tempX = mapX;
-						tempY = mapY+1;
+						tempY = mapY-1;
 						break;
 					}
 					case SOUTH:{
 						tempX = mapX;
-						tempY = mapY-1;
+						tempY = mapY+1;
 						break;
 					}
 					default:{

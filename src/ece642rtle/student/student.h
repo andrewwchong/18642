@@ -27,7 +27,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
 
 // enum Direction{NORTH, WEST, SOUTH, EAST};
 
-enum Direction{WEST,SOUTH,EAST,NORTH};
+enum Direction{WEST,NORTH,EAST,SOUTH};
 
 static const int numDirections = 4;
 
