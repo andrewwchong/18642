@@ -127,7 +127,7 @@ int translateOrnt(int orientation ,turtleMove move) {
  */
 bool moveTurtle(QPointF& pos_, int& orientation)
 {
-  Point Prev{};
+  // Point Prev{};
 	Point New{};
 	static int32_t TIMEOUT = 100;
 	static bool bump;
@@ -136,24 +136,28 @@ bool moveTurtle(QPointF& pos_, int& orientation)
     //Only take action if status is moving
     if(MOVING == 0){
         //Update positions
-        Prev.x = pos_.x(); Prev.y = pos_.y();
+        // Prev.x = pos_.x(); Prev.y = pos_.y();
         New.x = pos_.x(); New.y = pos_.y();
 
         switch(orientation){
             case NORTH:{
-                New.y -= 1; //Increment x position by 1
+                New.x = pos_.x();
+                New.y = pos_.y()-1;
                 break;
             }
             case WEST:{
-                New.x -= 1; //Decrement x position by 1
+                New.x = pos_.x()-1;
+                New.y = pos_.y();
                 break;
             }
             case SOUTH:{
-                New.y += 1;//Increment y position by 1
+                New.x = pos_.x();
+                New.y = pos_.y()+1;
                 break;
             }
             case EAST:{
-                New.x += 1; //Decrement y position by 1
+                New.x = pos_.x()+1;
+                New.y = pos_.y();
                 break;
             }
           default:{
@@ -162,7 +166,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         }
       
         //bump checks if the space in front of it is blocked
-        bump = bumped(static_cast<int>(Prev.x),static_cast<int>(Prev.y),static_cast<int>(New.x),static_cast<int>(New.y));
+        bump = bumped(static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),static_cast<int>(New.x),static_cast<int>(New.y));
 
         //atend checks if space is at the end of maze
         atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
