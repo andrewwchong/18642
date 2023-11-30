@@ -96,7 +96,7 @@ int translateOrnt(int orientation ,turtleMove move) {
  */
 bool moveTurtle(QPointF& pos_, int& orientation)
 {
-    Point Prev{};
+  Point Prev{};
 	Point New{};
 	static int32_t TIMEOUT = 40;
 	static bool bump;
