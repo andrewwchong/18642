@@ -57,6 +57,7 @@ set(monitor_TARGETS_SRCS
   "ece642rtle_face_monitor monitors/achong2_face_monitor.cpp"
   "ece642rtle_solved_monitor monitors/achong2_solved_monitor.cpp"
   "ece642rtle_atend_monitor monitors/achong2_atend_monitor.cpp"
+  "ece642rtle_tick_monitor monitors/achong2_tick_monitor.cpp"
   )
 
 set(ece642rtle_monitor_main monitors/ros_monitor_interface.cpp)
