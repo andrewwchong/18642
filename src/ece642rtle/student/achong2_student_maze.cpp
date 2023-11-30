@@ -83,7 +83,7 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
 int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn left
     if(move == TURN_LEFT){
-        orientation = (orientation+1)%numDirections;
+        orientation = (orientation-1)%numDirections;
     }
     return orientation;
 }
