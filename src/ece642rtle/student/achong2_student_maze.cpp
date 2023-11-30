@@ -100,7 +100,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 	Point New{};
 	static int32_t TIMEOUT = 10;
 	static bool bump;
-	ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
+	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
     //Only take action if status is moving
     if(MOVING == 0){
