@@ -36,7 +36,7 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // true, that the same pose isn't printed twice
   if (!suppress_double_visits || !moved ||
       (last_pose.x != x || last_pose.y != y)) {
-    ROS_INFO("[[%ld ns]] 'Pose' was sent. Data: x = %d, y=%d", t.toNSec(), x, y);
+    // ROS_INFO("[[%ld ns]] 'Pose' was sent. Data: x = %d, y=%d", t.toNSec(), x, y);
   }
 
   // Check that the turtle has moved before and that the Manhattan
