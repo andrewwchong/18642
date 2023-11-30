@@ -82,11 +82,11 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
  //bump = bumped
 int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn right
-    ROS_ERROR("Before turn: %d",orientation);
+    ROS_INFO("Before turn: %d",orientation);
     if(move == TURN_RIGHT){
         orientation = (orientation+1)%numDirections;
     }
-    ROS_ERROR("After turn: %d",orientation);
+    ROS_INFO("After turn: %d",orientation);
     return orientation;
 }
 

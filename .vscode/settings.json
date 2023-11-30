@@ -5,6 +5,7 @@
         "random": "cpp",
         "limits": "cpp",
         "cmath": "cpp",
-        "*.txx": "cpp"
+        "*.txx": "cpp",
+        "*.tcc": "cpp"
     }
 }
