@@ -131,6 +131,8 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
     //Only take action if status is moving
+    ROS_INFO("Current Pos: %d,%d, Orientation:",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
+
     if(MOVING == 0){
         //Update positions
         // Prev.x = pos_.x(); Prev.y = pos_.y();
@@ -161,6 +163,9 @@ bool moveTurtle(QPointF& pos_, int& orientation)
             ROS_ERROR("undefined direction");
           }
         }
+
+        ROS_INFO("Current Pos: %d,%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()));
+
       
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),static_cast<int>(New.x),static_cast<int>(New.y));
