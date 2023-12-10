@@ -131,9 +131,9 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
     //Only take action if status is moving
-    ROS_INFO("Current Pos: %d,%d, Orientation:",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
 
     if(MOVING == 0){
+        ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
         //Update positions
         // Prev.x = pos_.x(); Prev.y = pos_.y();
         New.x = pos_.x(); New.y = pos_.y();
