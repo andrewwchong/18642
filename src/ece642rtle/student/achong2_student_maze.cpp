@@ -86,8 +86,6 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
  * Takes an orientation and a turtleMove and returns a new orienation
  * based on the move
  */
- //stateFlag = state==orientation
- //bump = bumped
 int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn right
     if(move == TURN_RIGHT){
