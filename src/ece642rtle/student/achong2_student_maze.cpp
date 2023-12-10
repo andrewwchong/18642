@@ -126,7 +126,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   // Point Prev{};
 	Point New{};
-	static int32_t TIMEOUT = 100;
+	static int32_t TIMEOUT = 200;
 	static bool bump;
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
