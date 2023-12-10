@@ -55,7 +55,7 @@ bool inBounds(Point coord){
 // and NO other turtle methods or maze methods (no peeking at the maze!)
 
 
-void addDirection(){
+void turnRight(){
 	switch(DIRECTION){
 		case NORTH:{
 			DIRECTION = EAST;
