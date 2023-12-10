@@ -55,6 +55,29 @@ bool inBounds(Point coord){
 // and NO other turtle methods or maze methods (no peeking at the maze!)
 
 
+void addDirection(){
+	switch(DIRECTION){
+		case NORTH:{
+			DIRECTION = EAST;
+			break;
+			}
+			case EAST:{
+			DIRECTION = SOUTH;
+			break;
+			}
+			case SOUTH:{
+			DIRECTION = WEST;
+			break;
+			}
+			case WEST:{
+			DIRECTION = NORTH;
+			break;
+			}
+			default:{
+			ROS_ERROR("undefined direction");
+			}
+}
+
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
 	//State 0 means it stays in place, state 1 means it moves
@@ -134,30 +157,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			
 				//3. numTurns <4
 				NUM_TURNS++;
-
-				
+				turnRight();
 				// DIRECTION = (DIRECTION+1)%numDirections;
-				switch(DIRECTION){
-					case NORTH:{
-						DIRECTION = EAST;
-						break;
-						}
-						case EAST:{
-						DIRECTION = SOUTH;
-						break;
-						}
-						case SOUTH:{
-						DIRECTION = WEST;
-						break;
-						}
-						case WEST:{
-						DIRECTION = NORTH;
-						break;
-						}
-						default:{
-						ROS_ERROR("undefined direction");
-						}
-				}
 				ROS_INFO("Turning right to measure");
 
 				return TURN_RIGHT;
@@ -168,30 +169,11 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				if(minDirection > TURNS){
 					TURNS ++;
 					// DIRECTION = (DIRECTION+1)%numDirections;
-					switch(DIRECTION){
-						case NORTH:{
-							DIRECTION = EAST;
-							break;
-							}
-							case EAST:{
-							DIRECTION = SOUTH;
-							break;
-							}
-							case SOUTH:{
-							DIRECTION = WEST;
-							break;
-							}
-							case WEST:{
-							DIRECTION = NORTH;
-							break;
-							}
-							default:{
-							ROS_ERROR("undefined direction");
-							}
-					}
-					ROS_INFO("Turning right to direction");
-					return TURN_RIGHT;
+					turnRight();
 				}
+				ROS_INFO("Turning right to direction");
+				return TURN_RIGHT;
+			}
 				tempX = mapX;
 				tempY = mapY;
 				switch(DIRECTION){
@@ -236,8 +218,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//ERROR
 				ROS_ERROR("undefined state");
 			} 
-
-	}
-
+		}
 	}
 }

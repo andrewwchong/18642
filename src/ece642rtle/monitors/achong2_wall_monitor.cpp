@@ -52,9 +52,6 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
         }
         break;
       }
-      if(i==3){
-        ROS_WARN("VIOLATION: Invalid position");
-      }
     }
   }
 
