@@ -76,6 +76,7 @@ void addDirection(){
 			default:{
 			ROS_ERROR("undefined direction");
 			}
+	}
 }
 
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
@@ -159,6 +160,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				NUM_TURNS++;
 				turnRight();
 				// DIRECTION = (DIRECTION+1)%numDirections;
+				
 				ROS_INFO("Turning right to measure");
 
 				return TURN_RIGHT;
@@ -170,10 +172,10 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					TURNS ++;
 					// DIRECTION = (DIRECTION+1)%numDirections;
 					turnRight();
+					ROS_INFO("Turning right to direction");
+					return TURN_RIGHT;
 				}
-				ROS_INFO("Turning right to direction");
-				return TURN_RIGHT;
-			}
+
 				tempX = mapX;
 				tempY = mapY;
 				switch(DIRECTION){
