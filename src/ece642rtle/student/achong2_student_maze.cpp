@@ -29,7 +29,7 @@ int32_t MOVING, STATE;
 static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
-int32_t MAP[sizeX][sizeY];
+// int32_t MAP[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
 
@@ -138,8 +138,8 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         // New.x = pos_.x(); New.y = pos_.y();
 
         //Update Map
-        MAP[mapX][mapY] += 1;
-        displayVisits(MAP[mapX][mapY]);
+        // MAP[mapX][mapY] += 1;
+        // displayVisits(MAP[mapX][mapY]);
 
         switch(orientation){
             case NORTH:{

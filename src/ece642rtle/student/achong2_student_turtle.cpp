@@ -149,8 +149,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 				}		
 
-				ROS_INFO("Considering: %d,%d, Direction %d, visits:%d",tempX,tempY,minDirection,map[tempX][tempY]);
-				if(map[tempX][tempY] <= min && !bump){
+				ROS_INFO("Considering: %d,%d, Direction %d, visits:%d, min:%d",tempX,tempY,minDirection,map[tempX][tempY],min);
+				if(map[tempX][tempY] < min && !bump){
 					min = map[tempX][tempY];
 					minDirection = NUM_TURNS; //This represents a direction in the enum
 					ROS_INFO("New candidate: %d,%d, Direction %d, visits:%d",tempX,tempY,minDirection,min);
