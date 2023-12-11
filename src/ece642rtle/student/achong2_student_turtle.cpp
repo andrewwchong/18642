@@ -41,9 +41,8 @@ static const int32_t mapSize = 23;
 int32_t map[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
+
 static int min = 1000;
-
-
 static int minDirection = -1;
 
 bool inBounds(Point coord){
