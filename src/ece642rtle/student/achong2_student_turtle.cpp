@@ -75,7 +75,7 @@ void turnRight(){
 			break;
 			}
 			default:{
-			ROS_ERROR("undefined direction");
+			ROS_ERROR("undefined direction turn right");
 			}
 	}
 }

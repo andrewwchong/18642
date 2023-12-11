@@ -72,7 +72,7 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
             }
 
             default:{
-              ROS_ERROR("undefined direction");
+              ROS_ERROR("undefined direction translate pos");
             }
         }
 
@@ -106,7 +106,7 @@ int translateOrnt(int orientation ,turtleMove move) {
               break;
             }
             default:{
-              ROS_ERROR("undefined direction");
+              ROS_ERROR("undefined direction translate ornt");
             }
          }
     }
@@ -124,7 +124,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 5;
+	static int32_t TIMEOUT = 2;
 	static bool bump;
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
@@ -171,7 +171,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
                 break;
             }
           default:{
-            ROS_ERROR("undefined direction");
+            ROS_ERROR("undefined direction move turtle");
           }
         }
 
