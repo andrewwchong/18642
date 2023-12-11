@@ -75,9 +75,7 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
               ROS_ERROR("undefined direction");
             }
         }
-        //Update Map
-        MAP[mapX][mapY] += 1;
-        displayVisits(MAP[mapX][mapY]);
+
       }
   return pos_;
 }
@@ -138,6 +136,10 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         //Update positions
         // Prev.x = pos_.x(); Prev.y = pos_.y();
         // New.x = pos_.x(); New.y = pos_.y();
+
+        //Update Map
+        MAP[mapX][mapY] += 1;
+        displayVisits(MAP[mapX][mapY]);
 
         switch(orientation){
             case NORTH:{

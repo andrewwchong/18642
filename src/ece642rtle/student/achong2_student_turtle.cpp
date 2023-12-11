@@ -202,10 +202,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						break;
 					}
 				}
-				// ROS_INFO("Go to (%d,%d)", mapX,mapY);
 				mapX = tempX;
 				mapY = tempY;
-				
+				ROS_INFO("Go to (%d,%d): %d", mapX,mapY,map[mapX][mapY]);
 				map[mapX][mapY] += 1;
 				//return mindirections
 				STATE = S1_CHECK_END;
