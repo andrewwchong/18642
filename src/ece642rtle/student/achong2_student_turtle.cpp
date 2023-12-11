@@ -38,7 +38,7 @@ static int32_t TURNS = 0;
 static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
-int32_t map[sizeX][sizeY];
+static int32_t map[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
 static int min = 1000;
