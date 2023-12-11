@@ -92,6 +92,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 		switch(STATE){
 			case S1_CHECK_END:{ //S1: Check at End
 				//S1
+				turtleMap[mapX][mapY]++;
+				displayVisits(turtleMap[mapX][mapY]);
 				if(atEnd){
 					//2. atEnd = True
 					STATE = S5_GOAL;
@@ -99,8 +101,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 				else{
 					//1. atEnd = False
-					turtleMap[mapX][mapY]++;
-					displayVisits(turtleMap[mapX][mapY]);
+
 					ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
 
 					STATE = S2_CHECK_FUNCTION;
