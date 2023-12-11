@@ -38,7 +38,7 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
 }
 
 void tickInterrupt(ros::Time t) {
-  if(static_cast<int>(poseInt)+static_cast<int>(visitInt)+static_cast<int>(bumpInt) > 1 ){
+  if(static_cast<int>(poseInt)>1 || static_cast<int>(visitInt)>1 || static_cast<int>(bumpInt) > 1 ){
     ROS_WARN("VIOLATION: Interrupts called more than once in a tick: Pose:%d,Visit:%d,Bump:%d",poseInt,visitInt,bumpInt);
   }
   poseInt = false;
