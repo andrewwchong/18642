@@ -39,10 +39,10 @@ static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
 static int32_t turtleMap[sizeX][sizeY];
-int32_t mapX = 11;
-int32_t mapY = 11;
-int32_t tempX;
-int32_t tempY;
+static int32_t mapX = 11;
+static int32_t mapY = 11;
+static int32_t tempX;
+static int32_t tempY;
 
 static int min = 1000;
 static int minDirection = -1;
