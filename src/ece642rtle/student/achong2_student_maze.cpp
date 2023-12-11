@@ -124,8 +124,8 @@ int translateOrnt(int orientation ,turtleMove move) {
  */
 bool moveTurtle(QPointF& pos_, int& orientation)
 {
-  // Point Prev{};
-	Point New{};
+  Point BumpPoint1{};
+	Point BumpPoint2{};
 	static int32_t TIMEOUT = 200;
 	static bool bump;
 	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
@@ -137,27 +137,35 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
         //Update positions
         // Prev.x = pos_.x(); Prev.y = pos_.y();
-        New.x = pos_.x(); New.y = pos_.y();
+        // New.x = pos_.x(); New.y = pos_.y();
 
         switch(orientation){
             case NORTH:{
-                New.x = pos_.x();
-                New.y = pos_.y()-1;
+                BumpPoint1.x = pos_.x();
+                BumpPoint1.y = pos_.y();                
+                BumpPoint2.x = pos_.x()+1;
+                BumpPoint2.y = pos_.y();
                 break;
             }
             case WEST:{
-                New.x = pos_.x()-1;
-                New.y = pos_.y();
+                BumpPoint1.x = pos_.x();
+                BumpPoint1.y = pos_.y();                
+                BumpPoint2.x = pos_.x();
+                BumpPoint2.y = pos_.y()+1;
                 break;
             }
             case SOUTH:{
-                New.x = pos_.x();
-                New.y = pos_.y()+1;
+                BumpPoint1.x = pos_.x();
+                BumpPoint1.y = pos_.y()+1;                
+                BumpPoint2.x = pos_.x()+1;
+                BumpPoint2.y = pos_.y()+1;
                 break;
             }
             case EAST:{
-                New.x = pos_.x()+1;
-                New.y = pos_.y();
+                BumpPoint1.x = pos_.x()+1;
+                BumpPoint1.y = pos_.y();                
+                BumpPoint2.x = pos_.x()+1;
+                BumpPoint2.y = pos_.y()+1;
                 break;
             }
           default:{
