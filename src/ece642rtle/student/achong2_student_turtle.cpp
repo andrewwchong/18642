@@ -120,6 +120,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
 				//4. numTurns == 4
+				ROS_INFO("At: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,map[tempX][tempY]);
+
 				if(NUM_TURNS >= 4){
 					TURNS=0;
 					STATE = S4_MOVE;
