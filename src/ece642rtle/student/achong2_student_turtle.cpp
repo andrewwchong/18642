@@ -103,6 +103,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					//1. atEnd = False
 					map[mapX][mapY] += 1;
 					displayVisits(map[mapX][mapY]);
+					ROS_INFO("At: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,map[tempX][tempY]);
+
 					STATE = S2_CHECK_FUNCTION;
 					break;
 				}
