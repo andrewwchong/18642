@@ -101,6 +101,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 				else{
 					//1. atEnd = False
+					map[mapX][mapY] += 1;
+					displayVisits(map[mapX][mapY]);
 					STATE = S2_CHECK_FUNCTION;
 					break;
 				}
@@ -206,11 +208,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				mapX = tempX;
 				mapY = tempY;
 				ROS_INFO("Move to (%d,%d): %d", mapX,mapY,map[mapX][mapY]);
-				map[mapX][mapY] += 1;
 				//return mindirections
 				STATE = S1_CHECK_END;
 				// ROS_INFO("Moving forward: direction %d",DIRECTION);
-				displayVisits(map[mapX][mapY]);
 				return MOVE;
 			}
 			case 5:{//S5:Goal
