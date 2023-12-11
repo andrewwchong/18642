@@ -38,7 +38,7 @@ static int32_t TURNS = 0;
 static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
-static int32_t map[sizeX][sizeY];
+int32_t map[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
 static int min = 1000;
@@ -84,8 +84,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
 	//State 0 means it stays in place, state 1 means it moves
 
-	int tempX = mapX;
-	int tempY = mapY;
+	int32_t tempX = mapX;
+	int32_t tempY = mapY;
 	if(atEnd){
 		return NO_MOVE;
 	}
