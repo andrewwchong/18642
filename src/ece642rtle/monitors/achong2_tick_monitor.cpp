@@ -17,9 +17,9 @@ static bool moved = false;
 // Flag that doesn't print pose updates if the turtle has moved 0 steps
 static const bool suppress_double_visits = true;
 
-static bool poseInt = false;
-static bool visitInt = false;
-static bool bumpInt = false;
+static int poseInt = 0;
+static int visitInt = 0;
+static int bumpInt = 0;
 /*
  * Returns absolute value of x
  * WARNING: unsafe for edge-case values
@@ -34,24 +34,24 @@ inline int abs(int x) {
  * if the locations differ by more than 1 in Manhattan Distance.
  */
 void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
-  poseInt = true;
+  poseInt++;
 }
 
 void tickInterrupt(ros::Time t) {
   if(static_cast<int>(poseInt)>1 || static_cast<int>(visitInt)>1 || static_cast<int>(bumpInt) > 1 ){
     ROS_WARN("VIOLATION: Interrupts called more than once in a tick: Pose:%d,Visit:%d,Bump:%d",poseInt,visitInt,bumpInt);
   }
-  poseInt = false;
-  visitInt = false;
-  bumpInt = false;
+  poseInt = 0;
+  visitInt = 0;
+  bumpInt = 0;
 }
 
 void visitInterrupt(ros::Time t, int visits) {
-  visitInt = true;
+  visitInt++;
 }
 
 void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
-  bumpInt = true;
+  bumpInt++;
 }
 
 void atEndInterrupt(ros::Time t, int x, int y, bool atEnd) {
