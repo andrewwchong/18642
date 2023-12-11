@@ -57,6 +57,8 @@ bool bumped(int x1, int y1, int x2, int y2) {
     bump_echo.y2 = y2;
     bump_echo.resp = resp;
     RTI_bump_echo.publish(bump_echo);
+    ROS_INFO("In function: Bump of %d,%d and %d,%d is %d",x1,y1,x2,y2,resp);
+
     return resp;
   } else {
     ROS_ERROR("Failed to call service bump");
