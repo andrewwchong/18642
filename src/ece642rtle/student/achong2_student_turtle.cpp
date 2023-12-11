@@ -41,6 +41,8 @@ static const int32_t mapSize = 23;
 static int32_t turtleMap[sizeX][sizeY];
 int32_t mapX = 11;
 int32_t mapY = 11;
+int32_t tempX;
+int32_t tempY;
 
 static int min = 1000;
 static int minDirection = -1;
@@ -82,9 +84,6 @@ void turnRight(){
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
 	//State 0 means it stays in place, state 1 means it moves
-
-	int32_t tempX = mapX;
-	int32_t tempY = mapY;
 	if(atEnd){
 		return NO_MOVE;
 	}
@@ -129,9 +128,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 
 				switch(DIRECTION){
-					case WEST:{
-						tempX = mapX-1;
-						tempY = mapY;
+					case NORTH:{
+						tempX = mapX;
+						tempY = mapY-1;
 						break;
 					}
 					case EAST:{
@@ -139,14 +138,14 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						tempY = mapY;
 						break;
 					}
-					case NORTH:{
-						tempX = mapX;
-						tempY = mapY-1;
-						break;
-					}
 					case SOUTH:{
 						tempX = mapX;
 						tempY = mapY+1;
+						break;
+					}
+					case WEST:{
+						tempX = mapX-1;
+						tempY = mapY;
 						break;
 					}
 					default:{
