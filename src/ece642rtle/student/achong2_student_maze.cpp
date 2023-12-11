@@ -180,7 +180,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
       
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
-				// ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
+				ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
 
         //atend checks if space is at the end of maze
         atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
