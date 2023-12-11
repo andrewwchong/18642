@@ -41,6 +41,7 @@ static const int32_t mapSize = 23;
 int32_t map[sizeX][sizeY];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
+static int min = 1000;
 
 
 static int minDirection = -1;
@@ -82,7 +83,6 @@ void turnRight(){
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
 	//State 0 means it stays in place, state 1 means it moves
-	int min = 1000;
 
 	int tempX = mapX;
 	int tempY = mapY;
@@ -210,6 +210,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//return mindirections
 				STATE = S1_CHECK_END;
 				// ROS_INFO("Moving forward: direction %d",DIRECTION);
+				displayVisits(map[mapX][mapY]);
 				return MOVE;
 			}
 			case 5:{//S5:Goal
