@@ -1,8 +1,10 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
+ * This monitor checks that the invariant "between calls to tickInterrupt, there shall be at most one call
+ * to each of poseInterrupt, visitsInterrupt, and bumpInterrupt". 
+ * tickInterrupt occurs after every call to moveTurtle, so this effectively checks that your moveTurtle 
+ * only makes one of each type of call.
  * It keeps track of the previous position of the turtle and compares it
  * to the current position to check the invariant.
  */

@@ -1,8 +1,8 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
+ * This monitor checks that the invariant "the turtle can turn a maximum of 90 
+ * degrees in a single tick." is not violated
  * It keeps track of the previous position of the turtle and compares it
  * to the current position to check the invariant.
  */

@@ -1,8 +1,8 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
+ * This monitor checks that the invariant "the turtle shall not go through walls"
+ * is not violated.
  * It keeps track of the previous position of the turtle and compares it
  * to the current position to check the invariant.
  */
@@ -42,7 +42,6 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // Last conditional makes sure that if suppress_double_visits is
   // true, that the same pose isn't printed twice
 
-  
 
   if(!(X == x && Y == y)){//if position changed
     for(int i = 0; i<4; i++){ //go through each position

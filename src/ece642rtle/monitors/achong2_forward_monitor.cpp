@@ -1,10 +1,9 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
- * It keeps track of the previous position of the turtle and compares it
- * to the current position to check the invariant.
+ * This monitor checks that the invariant "the turtle shall face the direction it is moving. 
+ * In other words, if the turtle moves from square A to square B, and square B is direction DIR (example: east) of square A, 
+ * the turtle must have been facing DIR before moving.
  */
 
 #include "monitor_interface.h"

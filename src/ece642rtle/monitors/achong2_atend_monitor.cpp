@@ -1,10 +1,8 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
- * It keeps track of the previous position of the turtle and compares it
- * to the current position to check the invariant.
+ * This monitor checks that the invariant Turtle shall only call atEnd(x,y) if it is at a position x,y.
+ * (No remotely fishing around the maze to figure out where the goal is for path planning.)
  */
 
 #include "monitor_interface.h"

@@ -1,8 +1,8 @@
 /*
  * Code by Milda Zizyte
  *
- * This monitor checks that the invariant "turtle shall not move more
- * than on square at a time" is not violated.
+ * This monitor checks that the invariant "If the turtle has solved the maze (atEnd(x,y)==true), it shall not move or turn" 
+ * is not violated.
  * It keeps track of the previous position of the turtle and compares it
  * to the current position to check the invariant.
  */
