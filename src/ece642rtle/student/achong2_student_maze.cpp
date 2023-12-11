@@ -30,8 +30,8 @@ static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
 // int32_t MAP[sizeX][sizeY];
-static int32_t mapX = 11;
-static int32_t mapY = 11;
+// static int32_t mapX = 11;
+// static int32_t mapY = 11;
 
 
 /*
@@ -46,28 +46,28 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
               ROS_INFO("MOVE North: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() - 1);//Increment y position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              mapY -= 1;
+              // mapY -= 1;
               break;
             }
             case WEST:{
               ROS_INFO("MOVE west: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              mapX -= 1;	
+              // mapX -= 1;	
               break;
             }
             case SOUTH:{
               ROS_INFO("MOVE south: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() + 1); //Decrement y position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              mapY += 1;
+              // mapY += 1;
               break;
             }
             case EAST:{
               ROS_INFO("MOVE east: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() + 1); //Increment x position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              mapX += 1;
+              // mapX += 1;
               break;
             }
 

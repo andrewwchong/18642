@@ -39,8 +39,8 @@ static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
 int32_t map[sizeX][sizeY];
-static int32_t mapX = 11;
-static int32_t mapY = 11;
+int32_t mapX = 11;
+int32_t mapY = 11;
 
 static int min = 1000;
 static int minDirection = -1;
@@ -102,7 +102,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					//1. atEnd = False
 					map[mapX][mapY] = map[mapX][mapY] + 1;
 					displayVisits(map[mapX][mapY]);
-					ROS_INFO("At: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,map[tempX][tempY]);
+					ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,map[mapX][mapY]);
 
 					STATE = S2_CHECK_FUNCTION;
 					break;
@@ -119,7 +119,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
 				//4. numTurns == 4
-				ROS_INFO("At: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,map[tempX][tempY]);
+				ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,map[mapX][mapY]);
 
 				if(NUM_TURNS >= 4){
 					TURNS=0;
@@ -180,36 +180,31 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					ROS_INFO("Turning right to direction");
 					return TURN_RIGHT;
 				}
-
-				tempX = mapX;
-				tempY = mapY;
 				switch(DIRECTION){
 					case WEST:{
-						tempX = mapX-1;
-						tempY = mapY;
+						mapX = mapX-1;
+						mapY = mapY;
 						break;
 					}
 					case EAST:{
-						tempX = mapX+1;
-						tempY = mapY;
+						mapX = mapX+1;
+						mapY = mapY;
 						break;
 					}
 					case NORTH:{
-						tempX = mapX;
-						tempY = mapY-1;
+						mapX = mapX;
+						mapY = mapY-1;
 						break;
 					}
 					case SOUTH:{
-						tempX = mapX;
-						tempY = mapY+1;
+						mapX = mapX;
+						mapY = mapY+1;
 						break;
 					}
 					default:{
 						break;
 					}
 				}
-				mapX = tempX;
-				mapY = tempY;
 				ROS_INFO("Move to (%d,%d): %d", mapX,mapY,map[mapX][mapY]);
 				//return mindirections
 				STATE = S1_CHECK_END;
