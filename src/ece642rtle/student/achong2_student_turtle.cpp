@@ -38,7 +38,7 @@ static int32_t TURNS = 0;
 static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
-int32_t map[sizeX][sizeY];
+static int32_t turtleMap[sizeX][sizeY];
 int32_t mapX = 11;
 int32_t mapY = 11;
 
@@ -100,9 +100,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 				else{
 					//1. atEnd = False
-					map[mapX][mapY] = map[mapX][mapY] + 1;
-					displayVisits(map[mapX][mapY]);
-					ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,map[mapX][mapY]);
+					turtleMap[mapX][mapY] = turtleMap[mapX][mapY] + 1;
+					displayVisits(turtleMap[mapX][mapY]);
+					ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
 
 					STATE = S2_CHECK_FUNCTION;
 					break;
@@ -119,7 +119,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
 				//4. numTurns == 4
-				ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,map[mapX][mapY]);
+				ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
 
 				if(NUM_TURNS >= 4){
 					TURNS=0;
@@ -154,9 +154,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 				}		
 
-				ROS_INFO("Considering: %d,%d, Direction %d, visits:%d, min:%d",tempX,tempY,DIRECTION,map[tempX][tempY],min);
-				if(map[tempX][tempY] < min && !bump){
-					min = map[tempX][tempY];
+				ROS_INFO("Considering: %d,%d, Direction %d, visits:%d, min:%d",tempX,tempY,DIRECTION,turtleMap[tempX][tempY],min);
+				if(turtleMap[tempX][tempY] < min && !bump){
+					min = turtleMap[tempX][tempY];
 					minDirection = NUM_TURNS; //This represents a direction in the enum
 					ROS_INFO("New candidate: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,min);
 				} 
@@ -205,7 +205,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						break;
 					}
 				}
-				ROS_INFO("Move to (%d,%d): %d", mapX,mapY,map[mapX][mapY]);
+				ROS_INFO("Move to (%d,%d): %d", mapX,mapY,turtleMap[mapX][mapY]);
 				//return mindirections
 				STATE = S1_CHECK_END;
 				// ROS_INFO("Moving forward: direction %d",DIRECTION);
