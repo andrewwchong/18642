@@ -23,7 +23,7 @@
 
 #include "student.h"
 
-static int32_t MOVING, STATE;
+static int32_t MOVING;
 
 /*
  * Takes a position and a turtleMove and returns a new position
