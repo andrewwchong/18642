@@ -155,7 +155,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 
         int X = static_cast<int>(pos_.x());
         int Y = static_cast<int>(pos_.y());
-        ROS_INFO("ATEND: Atend current:(%d,%d), prev:(%d,%d)",X,Y);
+        ROS_INFO("ATEND: Atend current:(%d,%d)",X,Y);
 
         //atend checks if space is at the end of maze
         atEnd = atend(X,Y);
@@ -163,7 +163,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle
         pos_ = translatePos(pos_,orientation,nextMove,atEnd); //Find translation position of turtle
-        ROS_INFO("ATEND: Atend after:(%d,%d), prev:(%d,%d)",X,Y);
+        ROS_INFO("ATEND: Atend after:(%d,%d)",X,Y);
 
 
     }
