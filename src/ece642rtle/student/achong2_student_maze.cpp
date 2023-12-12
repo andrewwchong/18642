@@ -109,12 +109,9 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 2;
+	static int32_t TIMEOUT = 10;
 	static bool bump;
 	static bool atEnd = false;
-
-  static int X = static_cast<int>(pos_.x());
-  static int Y =  static_cast<int>(pos_.y());
     //Only take action if status is moving
     if(atEnd){
         return false;}
@@ -157,7 +154,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
 
         //atend checks if space is at the end of maze
-        atEnd = atend(X,Y);
+        atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
 
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle
