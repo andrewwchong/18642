@@ -41,7 +41,7 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   //Update position
   X = x;
   Y = y;
-  last_orientation =o;
+  last_orientation = o;
 }
 
 /*
@@ -97,6 +97,8 @@ void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
   if(!(((x1==Point1.x && y1 == Point1.y) && (x2==Point2.x && y2 == Point2.y)) ||
          ((x1==Point2.x && y1 == Point2.y) && (x2==Point1.x && y2 == Point1.y)))){
     ROS_WARN("VIOLATION: Bump called on incorrect location: Start:(%d,%d) End:(%d,%d)",x1,y1,x2,y2);
+    ROS_WARN("VIOLATION: Correct location: Start:(%d,%d) End:(%d,%d)",Point1.x,Point1.y,Point2.x,Point2.y);
+
   }
 }
 
