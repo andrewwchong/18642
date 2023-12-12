@@ -44,17 +44,17 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     exit 2
 fi
 
-# Locate ece642rtle on system
-turtledir=`rospack find ece642rtle`
-if [ -z "$turtledir" ]; then
-    echo "Cannot locate package ece642rtle."
-    echo "Did you run catkin_make in the directory before proceeding?"
-    exit 1
-fi
+# # Locate ece642rtle on system
+# turtledir=`rospack find ece642rtle`
+# if [ -z "$turtledir" ]; then
+#     echo "Cannot locate package ece642rtle."
+#     echo "Did you run catkin_make in the directory before proceeding?"
+#     exit 1
+# fi
 
 
 # So ROS can find everything (catkin_ws is two directories above package directory)
-source $turtledir/../../devel/setup.bash
+source ~/catkin_ws/devel/setup.bash
 
 MONITORS=""
 
