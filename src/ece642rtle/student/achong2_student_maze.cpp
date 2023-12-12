@@ -150,8 +150,6 @@ bool moveTurtle(QPointF& pos_, int& orientation)
             ROS_ERROR("undefined direction move turtle");
           }
         }      
-        //bump checks if the space in front of it is blocked
-        bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
 
         int X = static_cast<int>(pos_.x());
         int Y = static_cast<int>(pos_.y());
@@ -159,6 +157,13 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 
         //atend checks if space is at the end of maze
         atEnd = atend(X,Y);
+
+        //bump checks if the space in front of it is blocked
+        bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
+
+        // for(int i = 0; i< 10000; i++){
+          
+        // }
 
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle
