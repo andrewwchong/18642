@@ -112,12 +112,13 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 	static int32_t TIMEOUT = 2;
 	static bool bump;
 	static bool atEnd = false;
+
+  static int X = static_cast<int>(pos_.x());
+  static int Y =  static_cast<int>(pos_.y());
     //Only take action if status is moving
     if(atEnd){
         return false;}
     if(MOVING == 0){
-        // ROS_INFO("---------------------------------------------------------------");
-        // ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
         //Update positions
         switch(orientation){
             case NORTH:{
@@ -154,10 +155,9 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         }      
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
-				// ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
 
         //atend checks if space is at the end of maze
-        atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
+        atEnd = atend(X,Y);
 
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle

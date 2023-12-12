@@ -78,7 +78,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 	static int32_t NUM_TURNS = 0;
 	static int32_t TURNS = 0;
 
-
 	//State 0 means it stays in place, state 1 means it moves
 	if(atEnd){
 		return NO_MOVE;
@@ -95,7 +94,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 				else{
 					//1. atEnd = False
-					// ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
 					STATE = S2_CHECK_FUNCTION;
 					break;
 				}
@@ -111,12 +109,9 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 			case S3_CHECK_DIRECTION:{ //S3:CheckDirection
 				//bump
 				//4. numTurns == 4
-				// ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
-
 				if(NUM_TURNS >= 4){
 					TURNS=0;
 					STATE = S4_MOVE;
-					// ROS_INFO("Done turning, Min directions:%d",minDirection);
 					break;
 				}
 
@@ -146,19 +141,14 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					}
 				}		
 
-				// ROS_INFO("Considering: %d,%d, Direction %d, visits:%d, min:%d",tempX,tempY,DIRECTION,turtleMap[tempX][tempY],min);
 				if(turtleMap[tempX][tempY] < min && !bump){
 					min = turtleMap[tempX][tempY];
 					minDirection = NUM_TURNS; //This represents a direction in the enum
-					// ROS_INFO("New candidate: %d,%d, Direction %d, visits:%d",tempX,tempY,DIRECTION,min);
 				} 
 			
 				//3. numTurns <4
 				NUM_TURNS++;
 				turnRight();
-				
-				// ROS_INFO("Turning right to measure");
-
 				return TURN_RIGHT;
 			}
 			case 4:{//S4: Move
@@ -167,7 +157,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				if(minDirection > TURNS){
 					TURNS ++;
 					turnRight();
-					// ROS_INFO("Turning right to direction");
 					return TURN_RIGHT;
 				}
 				switch(DIRECTION){
@@ -195,7 +184,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 						break;
 					}
 				}
-				// ROS_INFO("Move to (%d,%d): %d", mapX,mapY,turtleMap[mapX][mapY]);
 				//return mindirections
 				turtleMap[mapX][mapY]++;
 				displayVisits(turtleMap[mapX][mapY]);
