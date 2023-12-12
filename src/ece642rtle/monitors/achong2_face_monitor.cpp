@@ -16,8 +16,8 @@ static Orientation last_orientation;
 static bool moved = false;
 static int X = -1;
 static int Y = -1;
-struct Point Point1{};
-struct Point Point2{};
+Point Point1{};
+Point Point2{};
 
 
 
