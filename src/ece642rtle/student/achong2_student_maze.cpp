@@ -33,27 +33,27 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
   if( nextMove == MOVE && atEnd == false) {
         switch(orientation){
           case NORTH:{
-              ROS_INFO("MOVE North: from %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("MOVE North: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() - 1);//Increment y position by 1
-              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               break;
             }
             case WEST:{
-              ROS_INFO("MOVE west: from %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("MOVE west: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
-              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               break;
             }
             case SOUTH:{
-              ROS_INFO("MOVE south: from %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("MOVE south: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() + 1); //Decrement y position by 1
-              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               break;
             }
             case EAST:{
-              ROS_INFO("MOVE east: from %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("MOVE east: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() + 1); //Increment x position by 1
-              ROS_INFO("To %f,%f",pos_.x(),pos_.y());
+              // ROS_INFO("To %f,%f",pos_.x(),pos_.y());
               break;
             }
 
@@ -95,7 +95,7 @@ int translateOrnt(int orientation ,turtleMove move) {
             }
          }
     }
-    ROS_INFO("After turn: %d",orientation);
+    // ROS_INFO("After turn: %d",orientation);
     return orientation;
 }
 
@@ -116,8 +116,8 @@ bool moveTurtle(QPointF& pos_, int& orientation)
     if (atEnd){
         return false;}
     if(MOVING == 0){
-        ROS_INFO("---------------------------------------------------------------");
-        ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
+        // ROS_INFO("---------------------------------------------------------------");
+        // ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
         //Update positions
         switch(orientation){
             case NORTH:{
@@ -154,7 +154,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         }      
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
-				ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
+				// ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
 
         //atend checks if space is at the end of maze
         atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
