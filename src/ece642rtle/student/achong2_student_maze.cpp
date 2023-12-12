@@ -153,12 +153,18 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
 
+        int X = static_cast<int>(pos_.x());
+        int Y = static_cast<int>(pos_.y());
+        ROS_INFO("ATEND: Atend current:(%d,%d), prev:(%d,%d)",X,Y);
+
         //atend checks if space is at the end of maze
-        atEnd = atend(static_cast<int>(pos_.x()), static_cast<int>(pos_.y()));
+        atEnd = atend(X,Y);
 
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle
         pos_ = translatePos(pos_,orientation,nextMove,atEnd); //Find translation position of turtle
+        ROS_INFO("ATEND: Atend after:(%d,%d), prev:(%d,%d)",X,Y);
+
 
     }
     //Check for timeout sequence
