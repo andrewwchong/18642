@@ -38,6 +38,7 @@ bool get_bump();
 bool get_atEnd();
 int mock_translateOrnt(int orientation ,turtleMove move);
 static const int numDirections = 4;
+enum STATE{DUMMY, S1_CHECK_END, S2_CHECK_FUNCTION,S3_CHECK_DIRECTION,S4_MOVE,S5_GOAL};
 
 
 struct Point{

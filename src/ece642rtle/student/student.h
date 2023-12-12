@@ -24,9 +24,6 @@ int translateOrnt(int orientation ,turtleMove move);
 // int translateOrnt(int orientation, turtleMove nextMove);
 // OK to change below this line
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
-
-// enum Direction{NORTH, WEST, SOUTH, EAST};
-
 enum Direction{WEST,NORTH,EAST,SOUTH};
 
 static const int numDirections = 4;
