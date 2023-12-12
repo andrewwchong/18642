@@ -109,7 +109,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 20;
+	static int32_t TIMEOUT = 5;
 	static bool bump;
 	static bool atEnd = false;
     //Only take action if status is moving
@@ -153,20 +153,17 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 
         int X = static_cast<int>(pos_.x());
         int Y = static_cast<int>(pos_.y());
-        ROS_INFO("ATEND: Atend current:(%d,%d)",X,Y);
 
         //atend checks if space is at the end of maze
         atEnd = atend(X,Y);
 
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
-        usleep(100000);
+        usleep(50000);
 
         turtleMove nextMove = studentMoveTurtle(bump,atEnd); // define your own turtleMove enum or structure
         orientation = translateOrnt(orientation,nextMove); //Find orientation of turtle
         pos_ = translatePos(pos_,orientation,nextMove,atEnd); //Find translation position of turtle
-        ROS_INFO("ATEND: Atend after:(%d,%d)",X,Y);
-
 
     }
     //Check for timeout sequence
