@@ -18,8 +18,6 @@
 // T2: source devel/setup.bash && rosrun ece642rtle ece642rtle_node
 // T3: source devel/setup.bash && rosrun ece642rtle ece642rtle_student
 
-
-
 #ifdef testing
 #include "student_mock.h"
 #endif

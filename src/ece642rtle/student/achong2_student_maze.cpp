@@ -24,7 +24,6 @@
 #include "student.h"
 
 static int32_t MOVING;
-
 /*
  * Takes a position and a turtleMove and returns a new position
  * based on the move
@@ -110,7 +109,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 5;
+	static int32_t TIMEOUT = 1;
 	static bool bump;
 	static bool atEnd = false;
     //Only take action if status is moving
