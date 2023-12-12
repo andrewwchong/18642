@@ -88,8 +88,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 		switch(STATE){
 			case S1_CHECK_END:{ //S1: Check at End
 				//S1
-				turtleMap[mapX][mapY]++;
-				displayVisits(turtleMap[mapX][mapY]);
+
 				if(atEnd){
 					//2. atEnd = True
 					STATE = S5_GOAL;
@@ -196,6 +195,8 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					default:{
 						break;
 					}
+					turtleMap[mapX][mapY]++;
+					displayVisits(turtleMap[mapX][mapY]);
 				}
 				// ROS_INFO("Move to (%d,%d): %d", mapX,mapY,turtleMap[mapX][mapY]);
 				//return mindirections
