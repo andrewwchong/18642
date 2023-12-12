@@ -195,11 +195,11 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 					default:{
 						break;
 					}
-					turtleMap[mapX][mapY]++;
-					displayVisits(turtleMap[mapX][mapY]);
 				}
 				// ROS_INFO("Move to (%d,%d): %d", mapX,mapY,turtleMap[mapX][mapY]);
 				//return mindirections
+				turtleMap[mapX][mapY]++;
+				displayVisits(turtleMap[mapX][mapY]);
 				STATE = S1_CHECK_END;
 				return MOVE;
 			}
