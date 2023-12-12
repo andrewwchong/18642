@@ -16,15 +16,15 @@ bool bumped(int x1,int y1,int x2,int y2);
 bool atend(int x, int y);
 void displayVisits(int visits);
 // bool moveTurtle(QPointF& pos_, int& nw_or);
-
+enum turtleMove {MOVE, NO_MOVE, TURN_RIGHT};
 
 // Scope-preserving changes to these lines permitted (see p5 writeup)
-enum turtleMove {MOVE, NO_MOVE, TURN_LEFT};
 // QPointF translatePos(QPointF& pos_ , int  orientation,turtleMove nextMove,bool atEnd);
 // QPointF translatePos(QPointF pos_, turtleMove nextMove);
 int translateOrnt(int orientation ,turtleMove move);
 // int translateOrnt(int orientation, turtleMove nextMove);
 // OK to change below this line
+
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd);
 enum Direction{NORTH, WEST, SOUTH, EAST};
 
@@ -39,9 +39,11 @@ bool get_atEnd();
 int mock_translateOrnt(int orientation ,turtleMove move);
 static const int numDirections = 4;
 enum STATE{DUMMY, S1_CHECK_END, S2_CHECK_FUNCTION,S3_CHECK_DIRECTION,S4_MOVE,S5_GOAL};
-enum turtleMove {MOVE, NO_MOVE, TURN_RIGHT};
 
 struct Point{
   double x;
   double y;
 };
+
+void ROS_ERROR(std::string e);
+void displayVisits(int i);

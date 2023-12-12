@@ -45,30 +45,39 @@ bool get_bump(){
 }
 
 int mock_translateOrnt(int orientation ,turtleMove move) {
-    //Only need to turn left
-    if(move == TURN_LEFT){
-        mock_orientation = static_cast<Direction>((orientation+1)%numDirections);
+    //Only need to turn right
+    if(move == TURN_RIGHT){
+         switch(mock_orientation){
+          case NORTH:{
+              mock_orientation = EAST;
+              break;
+            }
+            case WEST:{
+              mock_orientation = NORTH;
+              break;
+            }
+            case SOUTH:{
+              mock_orientation = WEST;
+              break;
+            }
+            case EAST:{
+              mock_orientation = SOUTH;
+              break;
+            }
+            default:{
+              ROS_ERROR("undefined direction translate ornt");
+            }
+         }
     }
     return mock_orientation;
 }
 
-// /* Dummy ROS_ERROR */
-// void ROS_ERROR(std::string e) {
-//   mock_error = true;
-//   std::cout << e << std::endl;
-// }
+/* Dummy ROS_ERROR */
+void ROS_ERROR(std::string e) {
+  mock_error = true;
+  std::cout << e << std::endl;
+}
 
-
-// /*
-//  * Takes an orientation and a turtleMove and returns a new orienation
-//  * based on the move
-//  */
-//  //stateFlag = state==orientation
-//  //bump = bumped
-// int translateOrnt(int orientation ,turtleMove move) {
-//     //Only need to turn left
-//     if(move == TURN_LEFT){
-//         mock_orientation = static_cast<Direction>((orientation+1)%numDirections);
-//     }
-//     return mock_orientation;
-// }
+void displayVisits(int i){
+  i++;
+}

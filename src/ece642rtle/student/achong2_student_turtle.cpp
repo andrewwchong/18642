@@ -80,15 +80,14 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 
 
 	//State 0 means it stays in place, state 1 means it moves
-	// if(atEnd){
-	// 	return NO_MOVE;
-	// }
+	if(atEnd){
+		return NO_MOVE;
+	}
 
 	while(true){
 		switch(STATE){
 			case S1_CHECK_END:{ //S1: Check at End
 				//S1
-
 				if(atEnd){
 					//2. atEnd = True
 					STATE = S5_GOAL;

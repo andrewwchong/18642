@@ -19,12 +19,10 @@ void numTurns(int turns) {
 void test_RESET() {
   bool bump = get_bump();
   bool atEnd = get_atEnd();
-  // move_state = studentMoveTurtle(bump, atEnd);
   mock_orientation = get_orientation();
   
   CU_ASSERT_EQUAL(atEnd, false);
   CU_ASSERT_EQUAL(mock_orientation, NORTH);
-  // CU_ASSERT_EQUAL(move_state, TURN_LEFT);
 }
 
 
@@ -54,8 +52,8 @@ void test_NORTH() {
   mock_translateOrnt(mock_orientation ,move_state);
   mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(mock_orientation, WEST);
-  CU_ASSERT_EQUAL(move_state, TURN_LEFT);
+  CU_ASSERT_EQUAL(mock_orientation, EAST);
+  CU_ASSERT_EQUAL(move_state, TURN_RIGHT);
 }
 
 void test_SOUTH() {
@@ -71,8 +69,8 @@ void test_SOUTH() {
   mock_translateOrnt(mock_orientation ,move_state);
   mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(mock_orientation, EAST);
-  CU_ASSERT_EQUAL(move_state, TURN_LEFT);
+  CU_ASSERT_EQUAL(mock_orientation, WEST);
+  CU_ASSERT_EQUAL(move_state, TURN_RIGHT);
 }
 
 void test_EAST() {
@@ -88,37 +86,42 @@ void test_EAST() {
   mock_translateOrnt(mock_orientation ,move_state);
   mock_orientation = get_orientation();
 
-  CU_ASSERT_EQUAL(mock_orientation, NORTH);
-  CU_ASSERT_EQUAL(move_state, TURN_LEFT);
+  CU_ASSERT_EQUAL(mock_orientation, SOUTH);
+  CU_ASSERT_EQUAL(move_state, TURN_RIGHT);
 }
 
-void test_WEST_MOVE() {
+void test_WEST() {
    bool bump = get_bump();
   setAtend(false);
   bool atEnd = get_atEnd();
-
   setAtend(false);
-  numTurns(4); 
   setOrientation(WEST);
-  mock_orientation = get_orientation();
+
   move_state = studentMoveTurtle(bump, atEnd);
   mock_translateOrnt(mock_orientation ,move_state);
   mock_orientation = get_orientation();
+  CU_ASSERT_EQUAL(mock_orientation, NORTH);
+  CU_ASSERT_EQUAL(move_state, TURN_RIGHT);
 
-  CU_ASSERT_EQUAL(mock_orientation, WEST);
+
+}
+
+void test_MOVE() {
+  bool bump = get_bump();
+  setAtend(false);
+  bool atEnd = get_atEnd();
+  setAtend(false);
+  numTurns(4); 
+  setOrientation(NORTH);
+
+  move_state = studentMoveTurtle(bump, atEnd);
+  mock_translateOrnt(mock_orientation ,move_state);
+  mock_orientation = get_orientation();
+  CU_ASSERT_EQUAL(mock_orientation, NORTH);
   CU_ASSERT_EQUAL(move_state, MOVE);
 }
 
 
-
-// void test_t2() {
-//   mock_set_bump(true);
-//   move_state return_state = moveTurtle(MOVE_FORWARD, false);
-//   orientation output_orienation = test_orientation_result();
-
-//   CU_ASSERT_EQUAL(output_orienation, UP);
-//   CU_ASSERT_EQUAL(return_state, MOVE_BACK);
-// }
 
 int init() {
   // Any test initialization code goes here
@@ -155,7 +158,8 @@ int main() {
       (NULL == CU_add_test(pSuite, "test of test_NORTH", test_NORTH)) ||
       (NULL == CU_add_test(pSuite, "test of test_SOUTH", test_SOUTH)) ||
       (NULL == CU_add_test(pSuite, "test of test_EAST", test_EAST)) ||
-      (NULL == CU_add_test(pSuite, "test of test_WEST", test_WEST_MOVE)) ||
+      (NULL == CU_add_test(pSuite, "test of test_WEST", test_WEST)) ||
+      (NULL == CU_add_test(pSuite, "test of test_WEST", test_MOVE)) ||
       (NULL == CU_add_test(pSuite, "test of test_END", test_END)))
     {
       CU_cleanup_registry();
