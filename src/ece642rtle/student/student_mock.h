@@ -1,4 +1,4 @@
-// #include <ros/ros.h>
+#include <ros/ros.h>
 // #include <boost/bind.hpp>
 // #include <ece642rtle/timeInt8.h>
 // #include <std_msgs/Empty.h>
@@ -39,7 +39,7 @@ bool get_atEnd();
 int mock_translateOrnt(int orientation ,turtleMove move);
 static const int numDirections = 4;
 enum STATE{DUMMY, S1_CHECK_END, S2_CHECK_FUNCTION,S3_CHECK_DIRECTION,S4_MOVE,S5_GOAL};
-
+enum turtleMove {MOVE, NO_MOVE, TURN_RIGHT};
 
 struct Point{
   double x;

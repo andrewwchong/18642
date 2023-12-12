@@ -109,12 +109,11 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 1;
+	static int32_t TIMEOUT = 4;
 	static bool bump;
 	static bool atEnd = false;
     //Only take action if status is moving
-    if (atEnd){
-        return false;}
+
     if(MOVING == 0){
         // ROS_INFO("---------------------------------------------------------------");
         // ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
@@ -165,6 +164,8 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 
     }
     //Check for timeout sequence
+    if (atEnd){
+        return false;}
     if (MOVING==0){ 
         MOVING = TIMEOUT;} 
     else{ 
