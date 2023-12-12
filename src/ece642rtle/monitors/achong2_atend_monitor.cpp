@@ -32,6 +32,10 @@ inline int abs(int x) {
  */
 void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   //Update position
+  if(!moved) {
+    // Update this flag the first time the turtle moves
+    moved = true;
+  }
   X = x;
   Y = y;
 }
@@ -52,11 +56,11 @@ void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
 void atEndInterrupt(ros::Time t, int x, int y, bool atEnd) {
   if (!moved) {
     // Update this flag the first time the turtle moves
-    moved = true;
+    return;
   }
   else{
     if(!(X == x && Y == y)){
-      ROS_WARN("VIOLATION: Atend Called not on current space");
+      ROS_WARN("VIOLATION: Atend Called not on current space current:(%d,%d), prev:(%d,%d)",x,y,X,Y);
     }
 
   }
