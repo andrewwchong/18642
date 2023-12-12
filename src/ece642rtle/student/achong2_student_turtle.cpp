@@ -30,26 +30,18 @@
 
 
 // OK TO MODIFY BELOW THIS LINE
-static int32_t NUM_TURNS = 0;
-static int32_t STATE=S1_CHECK_END;
-static int32_t DIRECTION = WEST;
-static int32_t TURNS = 0;
-
 static const int32_t sizeX = 11;
 static const int32_t sizeY = 11;
 static const int32_t mapSize = 23;
 static int32_t turtleMap[mapSize][mapSize];
 static int32_t mapX = 11;
 static int32_t mapY = 11;
-static int32_t tempX;
-static int32_t tempY;
 
-static int min = 1000;
-static int minDirection = -1;
+static int32_t STATE=S1_CHECK_END;
+static int32_t DIRECTION = WEST;
 
-bool inBounds(Point coord){
-	return !(coord.x < 0 || coord.y < 0 || coord.x >= sizeX || coord.y >= sizeY); 
-}
+static int32_t min = 1000;
+static int32_t minDirection = -1;
 
 // this procedure takes the current turtle position and orientation and returns
 // true=submit changes, false=do not submit changes
@@ -83,6 +75,12 @@ void turnRight(){
 
 turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 {   	
+	static int32_t tempX;
+	static int32_t tempY;
+	static int32_t NUM_TURNS = 0;
+	static int32_t TURNS = 0;
+
+
 	//State 0 means it stays in place, state 1 means it moves
 	if(atEnd){
 		return NO_MOVE;
@@ -101,9 +99,7 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				}
 				else{
 					//1. atEnd = False
-
 					ROS_INFO("At: %d,%d, Direction %d, visits:%d",mapX,mapY,DIRECTION,turtleMap[mapX][mapY]);
-
 					STATE = S2_CHECK_FUNCTION;
 					break;
 				}
@@ -164,7 +160,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//3. numTurns <4
 				NUM_TURNS++;
 				turnRight();
-				// DIRECTION = (DIRECTION+1)%numDirections;
 				
 				ROS_INFO("Turning right to measure");
 
@@ -175,7 +170,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				//Move towards Direction
 				if(minDirection > TURNS){
 					TURNS ++;
-					// DIRECTION = (DIRECTION+1)%numDirections;
 					turnRight();
 					ROS_INFO("Turning right to direction");
 					return TURN_RIGHT;
@@ -208,7 +202,6 @@ turtleMove studentMoveTurtle(bool& bump, bool& atEnd)
 				ROS_INFO("Move to (%d,%d): %d", mapX,mapY,turtleMap[mapX][mapY]);
 				//return mindirections
 				STATE = S1_CHECK_END;
-				// ROS_INFO("Moving forward: direction %d",DIRECTION);
 				return MOVE;
 			}
 			case 5:{//S5:Goal

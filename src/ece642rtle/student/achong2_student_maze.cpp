@@ -23,16 +23,7 @@
 
 #include "student.h"
 
-int32_t MOVING, STATE;
-
-
-static const int32_t sizeX = 11;
-static const int32_t sizeY = 11;
-static const int32_t mapSize = 23;
-// int32_t MAP[sizeX][sizeY];
-// static int32_t mapX = 11;
-// static int32_t mapY = 11;
-
+static int32_t MOVING, STATE;
 
 /*
  * Takes a position and a turtleMove and returns a new position
@@ -46,28 +37,24 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
               ROS_INFO("MOVE North: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() - 1);//Increment y position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              // mapY -= 1;
               break;
             }
             case WEST:{
               ROS_INFO("MOVE west: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() - 1); //Decrement x position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              // mapX -= 1;	
               break;
             }
             case SOUTH:{
               ROS_INFO("MOVE south: from %f,%f",pos_.x(),pos_.y());
               pos_.setY(pos_.y() + 1); //Decrement y position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              // mapY += 1;
               break;
             }
             case EAST:{
               ROS_INFO("MOVE east: from %f,%f",pos_.x(),pos_.y());
               pos_.setX(pos_.x() + 1); //Increment x position by 1
               ROS_INFO("To %f,%f",pos_.x(),pos_.y());
-              // mapX += 1;
               break;
             }
 
@@ -87,7 +74,6 @@ QPointF translatePos(QPointF& pos_ ,int orientation,turtleMove nextMove,  bool a
 int translateOrnt(int orientation ,turtleMove move) {
     //Only need to turn right
     if(move == TURN_RIGHT){
-        // orientation = (orientation+1)%numDirections;
          switch(orientation){
           case NORTH:{
               orientation = EAST;
@@ -126,23 +112,14 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 	Point BumpPoint2{};
 	static int32_t TIMEOUT = 5;
 	static bool bump;
-	// ROS_INFO("Turtle update Called  MOVING=%d", MOVING);
 	static bool atEnd = false;
     //Only take action if status is moving
     if (atEnd){
         return false;}
-        
     if(MOVING == 0){
         ROS_INFO("---------------------------------------------------------------");
         ROS_INFO("Current Pos: %d,%d, Orientation:%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()),orientation);
         //Update positions
-        // Prev.x = pos_.x(); Prev.y = pos_.y();
-        // New.x = pos_.x(); New.y = pos_.y();
-
-        //Update Map
-        // MAP[mapX][mapY] += 1;
-        // displayVisits(MAP[mapX][mapY]);
-
         switch(orientation){
             case NORTH:{
                 BumpPoint1.x = pos_.x();
@@ -175,11 +152,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
           default:{
             ROS_ERROR("undefined direction move turtle");
           }
-        }
-
-        // ROS_INFO("Current Pos: %d,%d",static_cast<int>(pos_.x()),static_cast<int>(pos_.y()));
-
-      
+        }      
         //bump checks if the space in front of it is blocked
         bump = bumped(static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y));
 				ROS_INFO("Bump of %d,%d and %d,%d is %d",static_cast<int>(BumpPoint1.x),static_cast<int>(BumpPoint1.y),static_cast<int>(BumpPoint2.x),static_cast<int>(BumpPoint2.y),bump);
@@ -192,9 +165,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
         pos_ = translatePos(pos_,orientation,nextMove,atEnd); //Find translation position of turtle
 
     }
-
     //Check for timeout sequence
-
     if (MOVING==0){ 
         MOVING = TIMEOUT;} 
     else{ 
