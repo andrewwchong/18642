@@ -109,7 +109,7 @@ bool moveTurtle(QPointF& pos_, int& orientation)
 {
   Point BumpPoint1{};
 	Point BumpPoint2{};
-	static int32_t TIMEOUT = 20;
+	static int32_t TIMEOUT = 2;
 	static bool bump;
 	static bool atEnd = false;
     //Only take action if status is moving
