@@ -59,6 +59,12 @@ void visitInterrupt(ros::Time t, int visits) {
 void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
   int newX,newY;
 
+  if(!moved){
+    // Update this flag the first time the turtle moves
+    moved = true;
+  }
+  else{
+
 
     //This is the wall segment that it should be facing
     switch(last_orientation){
@@ -95,12 +101,13 @@ void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
           }
         }
 
-  //If the x1,y1,x2,y2 don't match th expected value(checks for reversed as well)
-  if(!(((x1==Point1_x && y1 == Point1_y) && (x2==Point2_x && y2 == Point2_y)) ||
-         ((x1==Point2_x && y1 == Point2_y) && (x2==Point1_x && y2 == Point1_y)))){
-    ROS_WARN("VIOLATION: Bump called on incorrect location: Start:(%d,%d) End:(%d,%d)",x1,y1,x2,y2);
-    ROS_WARN("VIOLATION: Correct location: Start:(%d,%d) End:(%d,%d)",Point1_x,Point1_y,Point2_x,Point2_y);
+    //If the x1,y1,x2,y2 don't match th expected value(checks for reversed as well)
+    if(!(((x1==Point1_x && y1 == Point1_y) && (x2==Point2_x && y2 == Point2_y)) ||
+          ((x1==Point2_x && y1 == Point2_y) && (x2==Point1_x && y2 == Point1_y)))){
+      ROS_WARN("VIOLATION: Bump called on incorrect location: Start:(%d,%d) End:(%d,%d)",x1,y1,x2,y2);
+      ROS_WARN("VIOLATION: Correct location: Start:(%d,%d) End:(%d,%d)",Point1_x,Point1_y,Point2_x,Point2_y);
 
+    }
   }
 }
 

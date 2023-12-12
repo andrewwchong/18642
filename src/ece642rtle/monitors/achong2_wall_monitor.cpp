@@ -41,15 +41,19 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // Print pose info
   // Last conditional makes sure that if suppress_double_visits is
   // true, that the same pose isn't printed twice
-
-
-  if(!(X == x && Y == y)){//if position changed
-    for(int i = 0; i<4; i++){ //go through each position
-      if(x == pastPos[i][0] && y == pastPos[i][1]){
-        if(pastBump[i] == false){
-          ROS_WARN("VIOLATION: bump was false or not checked when moving to this location");
+  // Update this flag the first time the turtle moves
+  if (!moved) {
+    moved = true;
+  }
+  else{
+    if(!(X == x && Y == y)){//if position changed
+      for(int i = 0; i<4; i++){ //go through each position
+        if(x == pastPos[i][0] && y == pastPos[i][1]){
+          if(pastBump[i] == false){
+            ROS_WARN("VIOLATION: bump was false or not checked when moving to this location");
+          }
+          break;
         }
-        break;
       }
     }
   }
@@ -58,10 +62,7 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   last_orientation =o;
   X = x;
   Y = y;
-  // Update this flag the first time the turtle moves
-  if (!moved) {
-    moved = true;
-  }
+
 }
 
 /*

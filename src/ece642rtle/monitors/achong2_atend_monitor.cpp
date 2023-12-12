@@ -50,7 +50,14 @@ void bumpInterrupt(ros::Time t, int x1, int y1, int x2, int y2, bool bumped) {
 }
 
 void atEndInterrupt(ros::Time t, int x, int y, bool atEnd) {
-  if(!(X == x && Y == y)){
-    ROS_WARN("VIOLATION: Atend Called not on current space");
+  if (!moved) {
+    // Update this flag the first time the turtle moves
+    moved = true;
+  }
+  else{
+    if(!(X == x && Y == y)){
+      ROS_WARN("VIOLATION: Atend Called not on current space");
+    }
+
   }
 }

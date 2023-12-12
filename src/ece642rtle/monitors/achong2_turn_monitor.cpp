@@ -36,41 +36,42 @@ void poseInterrupt(ros::Time t, int x, int y, Orientation o) {
   // true, that the same pose isn't printed twice
 
 
-  switch(o){
-        case NORTH:{
-            if(last_orientation == SOUTH){
-                ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
-            }
-            break;
-          }
-          case WEST:{
-            if(last_orientation == EAST){
-                ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
-            }
-            break;
-          }
-          case SOUTH:{
-            if(last_orientation == NORTH){
-                ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
-            }
-            break;
-          }
-          case EAST:{
-            if(last_orientation == WEST){
-                ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
-            }
-            break;
-          }
+  if(!moved){
+    // Update this flag the first time the turtle moves
+    moved = true;
   }
-
+  else{
+    switch(o){
+          case NORTH:{
+              if(last_orientation == SOUTH){
+                  ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
+              }
+              break;
+            }
+            case WEST:{
+              if(last_orientation == EAST){
+                  ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
+              }
+              break;
+            }
+            case SOUTH:{
+              if(last_orientation == NORTH){
+                  ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
+              }
+              break;
+            }
+            case EAST:{
+              if(last_orientation == WEST){
+                  ROS_WARN("VIOLATION: Turn more than 90 degrees from %d to %d",last_orientation,o);
+              }
+              break;
+            }
+    }
+  }
     
   // store last Pose in memory
   last_orientation =o;
 
-  // Update this flag the first time the turtle moves
-  if (!moved) {
-    moved = true;
-  }
 }
 
 /*
