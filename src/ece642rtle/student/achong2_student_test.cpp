@@ -159,7 +159,7 @@ int main() {
       (NULL == CU_add_test(pSuite, "test of test_SOUTH", test_SOUTH)) ||
       (NULL == CU_add_test(pSuite, "test of test_EAST", test_EAST)) ||
       (NULL == CU_add_test(pSuite, "test of test_WEST", test_WEST)) ||
-      (NULL == CU_add_test(pSuite, "test of test_WEST", test_MOVE)) ||
+      (NULL == CU_add_test(pSuite, "test of test_MOVE", test_MOVE)) ||
       (NULL == CU_add_test(pSuite, "test of test_END", test_END)))
     {
       CU_cleanup_registry();
